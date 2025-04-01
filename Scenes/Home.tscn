@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://djptd7obxtvlf"]
+
+[ext_resource type="Texture2D" uid="uid://ctldrymdl8cfb" path="res://Textures/Screenshot 2025-01-07 182717.png" id="1_bxt7m"]
+[ext_resource type="Texture2D" uid="uid://dclckbego4488" path="res://Textures/IMG_9689.png" id="2_5km28"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2la0s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_td16a"]
+size = Vector3(5, 0.1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fa5rg"]
+albedo_texture = ExtResource("1_bxt7m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6u1j"]
+albedo_texture = ExtResource("2_5km28")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2, 3)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.688879)
+physics_material_override = SubResource("PhysicsMaterial_2la0s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("BoxShape3D_td16a")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0920072)
+material = SubResource("StandardMaterial3D_fa5rg")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88955, 0, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="RigidBody3D"]
+depth = 0.0
+polygon = PackedVector2Array(3, 0.75, 2, 0.5, 4, 0.4)
+margin = 0.001
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RigidBody3D/CollisionPolygon3D"]
+polygon = PackedVector2Array(3, 0.75, 2, 0.5, 4, 0.4)
+material = SubResource("StandardMaterial3D_j6u1j")

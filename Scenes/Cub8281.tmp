@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://c06l442lvv40r"]
+
+[ext_resource type="Texture2D" uid="uid://c4rf0ftsw7fka" path="res://Textures/IMG_1268.png" id="1_fq576"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="1_yymrd"]
+[ext_resource type="Texture2D" uid="uid://ctldrymdl8cfb" path="res://Textures/Screenshot 2025-01-07 182717.png" id="2_gypi2"]
+[ext_resource type="Texture2D" uid="uid://bdliy02typurn" path="res://Textures/IMG_0499.png" id="2_t61fl"]
+[ext_resource type="Script" path="res://Scripts/Ball.gd" id="3_1lkx4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k5n8u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arivt"]
+albedo_texture = ExtResource("2_t61fl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhsys"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0owth"]
+albedo_texture = ExtResource("1_fq576")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1ajob"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxfpc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbh26"]
+albedo_texture = ExtResource("2_gypi2")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Puck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.68762)
+
+[node name="Camera3D" type="Camera3D" parent="Puck"]
+transform = Transform3D(1, 0, 0, 0, 0.922106, 0.386936, 0, -0.386936, 0.922106, 0, 2.93337, 5.34019)
+script = ExtResource("1_yymrd")
+
+[node name="Ball" type="RigidBody3D" parent="Puck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02125, 1.58409)
+script = ExtResource("3_1lkx4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Puck/Ball"]
+shape = SubResource("SphereShape3D_k5n8u")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Puck/Ball/CollisionShape3D"]
+light_color = Color(0.447059, 1, 1, 1)
+omni_range = 10.65
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Puck/Ball/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_arivt")
+
+[node name="Room" type="Node" parent="."]
+
+[node name="Walls" type="Node" parent="Room"]
+
+[node name="Left" type="StaticBody3D" parent="Room/Walls"]
+transform = Transform3D(0.1, 0, 0, 0, 3, 0, 0, 0, 26, -13, 1.5, -13)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Walls/Left"]
+shape = SubResource("BoxShape3D_nhsys")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Walls/Left/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0owth")
+
+[node name="Right" type="StaticBody3D" parent="Room/Walls"]
+transform = Transform3D(0.1, 0, 0, 0, 3, 0, 0, 0, 26, 13, 1.5, -13)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Walls/Right"]
+shape = SubResource("BoxShape3D_nhsys")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Walls/Right/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0owth")
+
+[node name="Back" type="StaticBody3D" parent="Room/Walls"]
+transform = Transform3D(26, 0, 0, 0, 3, 0, 0, 0, 0.1, 0, 1.5, -26)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Walls/Back"]
+shape = SubResource("BoxShape3D_nhsys")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Walls/Back/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0owth")
+
+[node name="Floor" type="StaticBody3D" parent="Room"]
+transform = Transform3D(26, 0, 0, 0, 0.1, 0, 0, 0, 26, 0, 0, -13)
+physics_material_override = SubResource("PhysicsMaterial_1ajob")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor"]
+shape = SubResource("BoxShape3D_mxfpc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Floor/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_vbh26")
+
+[node name="Ceiling" type="StaticBody3D" parent="Room"]
+transform = Transform3D(26, 0, 0, 0, 0.1, 0, 0, 0, 26, 0, 3, -13)
+physics_material_override = SubResource("PhysicsMaterial_1ajob")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Ceiling"]
+shape = SubResource("BoxShape3D_mxfpc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/Ceiling/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_vbh26")
