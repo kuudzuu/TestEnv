@@ -24,11 +24,11 @@ func move_mouse(delta):
 		mouse_go = 0
 		var change = mouse_release_pos - mouse_click_pos
 		
-		$".".linear_velocity.x += change.x * delta
+		$".".linear_velocity.x += change.x * delta * 3
 		$".".linear_velocity.x = BALL_MAX_SPEED if $".".linear_velocity.x > BALL_MAX_SPEED else $".".linear_velocity.x
 		$".".linear_velocity.x = -1*BALL_MAX_SPEED if $".".linear_velocity.x < -1*BALL_MAX_SPEED else $".".linear_velocity.x
 		
-		$".".linear_velocity.z += change.y * delta
+		$".".linear_velocity.z += change.y * delta * 3
 		$".".linear_velocity.z = BALL_MAX_SPEED if $".".linear_velocity.z > BALL_MAX_SPEED else $".".linear_velocity.z
 		$".".linear_velocity.z = -1*BALL_MAX_SPEED if $".".linear_velocity.z < -1*BALL_MAX_SPEED else $".".linear_velocity.z
 

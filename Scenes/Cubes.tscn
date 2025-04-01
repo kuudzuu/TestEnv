@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://c06l442lvv40r"]
 
-[ext_resource type="Texture2D" uid="uid://c4rf0ftsw7fka" path="res://Textures/IMG_1268.png" id="1_fq576"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="1_yymrd"]
-[ext_resource type="Texture2D" uid="uid://ctldrymdl8cfb" path="res://Textures/Screenshot 2025-01-07 182717.png" id="2_gypi2"]
 [ext_resource type="Texture2D" uid="uid://bdliy02typurn" path="res://Textures/IMG_0499.png" id="2_t61fl"]
 [ext_resource type="Script" path="res://Scripts/Ball.gd" id="3_1lkx4"]
+[ext_resource type="Texture2D" uid="uid://2kmlhgxyf1vj" path="res://Textures/diner_seat - Copy.jpg" id="4_vwj8g"]
+[ext_resource type="Texture2D" uid="uid://cyt6kf7rncopx" path="res://Textures/IMG_0509 - Copy.PNG" id="5_0luyn"]
 [ext_resource type="Texture2D" uid="uid://dclckbego4488" path="res://Textures/IMG_9689.png" id="6_5niy0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k5n8u"]
@@ -17,15 +17,15 @@ albedo_texture = ExtResource("2_t61fl")
 [sub_resource type="BoxShape3D" id="BoxShape3D_mxfpc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbh26"]
-albedo_texture = ExtResource("2_gypi2")
+albedo_texture = ExtResource("4_vwj8g")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k2qif"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apwmf"]
-albedo_texture = ExtResource("1_fq576")
+albedo_texture = ExtResource("5_0luyn")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8iq8l"]
-albedo_texture = ExtResource("2_gypi2")
+albedo_texture = ExtResource("4_vwj8g")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2pq7v"]
 
@@ -38,7 +38,7 @@ albedo_texture = ExtResource("6_5niy0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.68762)
 
 [node name="Camera3D" type="Camera3D" parent="Puck"]
-transform = Transform3D(1, 0, 0, 0, 0.849239, 0.528009, 0, -0.528009, 0.849239, 0, 3.88322, 6.96094)
+transform = Transform3D(1, 0, 0, 0, 0.704423, 0.70978, 0, -0.70978, 0.704423, 0, 9.24047, 10.1172)
 script = ExtResource("1_yymrd")
 
 [node name="Ball" type="RigidBody3D" parent="Puck"]
@@ -80,10 +80,9 @@ shape = SubResource("BoxShape3D_k2qif")
 material = SubResource("StandardMaterial3D_apwmf")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Room/Walls"]
-transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 100, 30, -5, 0)
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 100, 26, -5, 0)
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Room/Walls/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Room/Walls/StaticBody3D2/CollisionPolygon3D"]
@@ -110,7 +109,7 @@ shape = SubResource("BoxShape3D_k2qif")
 material = SubResource("StandardMaterial3D_apwmf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43, 0)
+transform = Transform3D(0.473519, 0.703052, 0.530563, -0.836031, 0.548335, 0.0195435, -0.277186, -0.452822, 0.84742, 0.254549, 28.1997, -3.74318)
 light_energy = 6.465
 light_volumetric_fog_energy = 15.384
 directional_shadow_mode = 0
