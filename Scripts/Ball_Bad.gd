@@ -14,10 +14,34 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#move_WASD(delta)
-	print($".".linear_velocity)
-	move_mouse(delta)
+	#print($".".linear_velocity)
+	move_cursor_changing_camera(delta)
 	reset()
 	pass
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			mouse_click_pos = event.position
+		elif event.is_released:
+			mouse_release_pos = event.position
+			mouse_go = 1
+
+
+func move_cursor_changing_camera(delta):
+	if mouse_go == 1:
+		mouse_go = 0
+		var change = mouse_release_pos - mouse_click_pos
+		
+		$".".linear_velocity.x += change.x * delta * 3
+		$".".linear_velocity.x = BALL_MAX_SPEED if $".".linear_velocity.x > BALL_MAX_SPEED else $".".linear_velocity.x
+		$".".linear_velocity.x = -1*BALL_MAX_SPEED if $".".linear_velocity.x < -1*BALL_MAX_SPEED else $".".linear_velocity.x
+		
+		$".".linear_velocity.z += change.y * delta * 3
+		$".".linear_velocity.z = BALL_MAX_SPEED if $".".linear_velocity.z > BALL_MAX_SPEED else $".".linear_velocity.z
+		$".".linear_velocity.z = -1*BALL_MAX_SPEED if $".".linear_velocity.z < -1*BALL_MAX_SPEED else $".".linear_velocity.z
+
 
 func move_mouse(delta):
 	if mouse_go == 1:
@@ -33,19 +57,9 @@ func move_mouse(delta):
 		$".".linear_velocity.z = -1*BALL_MAX_SPEED if $".".linear_velocity.z < -1*BALL_MAX_SPEED else $".".linear_velocity.z
 
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.pressed:
-			mouse_click_pos = event.position
-		elif event.is_released:
-			mouse_release_pos = event.position
-			mouse_go = 1
-
-
 func move_WASD(delta):
 	var SPEED_AMT = 0.1
 	var amt = 200 * delta
-	print($".".linear_velocity)
 	if Input.is_physical_key_pressed(KEY_W):
 		var mult = amt if $".".linear_velocity.z > 0 else amt/2
 		$".".linear_velocity.z -= SPEED_AMT * mult
