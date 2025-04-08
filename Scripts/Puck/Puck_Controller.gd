@@ -127,7 +127,6 @@ func fire():
 	var projectile_velocity_change = dlib.vector_to_xy([firing_angle, 20])
 	projectile.linear_velocity.x = projectile_velocity_change[0]
 	projectile.linear_velocity.z = projectile_velocity_change[1]
-	pass
 
 ## UTILITY ---------------------------------------------------------------------
 
