@@ -4,9 +4,6 @@ extends Node
 ## Libraries
 var dlib = preload("res://Scripts/Utility/dlib.gd").new()
 
-## Scenes
-@onready var BULLET_SCENE = preload("res://Scenes/Projectiles/Bullet.tscn")
-
 ## Movement Modes
 enum MOVEMENT_MODE_ENUM {ORBIT, EXTEND, FOLLOW}
 ## ORBIT: Rotates around puck, facing puck ///
@@ -19,16 +16,11 @@ enum MOVEMENT_MODE_ENUM {ORBIT, EXTEND, FOLLOW}
 @onready var Ball = $Ball
 
 ## User Input
-var mouse_click_position: Vector2
-var mouse_release_position: Vector2
+var MOUSE_CLICK_POSITION: Vector2
+var MOUSE_RELEASE_POSITION: Vector2
 
-var projectile_click_position: Vector2
-var projectile_release_position: Vector2
-
-## Misc Parameters
-var FIXED_FORCE = true
-var FORCE = 20
-var FORCE_MULT = 0.02
+## User Input v2 lol
+var MOUSE_PATH = []
 
 ## FUNCTIONS =======================================================================================
 ## PREMADE ---------------------------------------------------------------------
@@ -57,29 +49,25 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_break"): # 'shift' added to new ui action "ui_break"
 		Ball.break_ball()
 	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		print("tracing")
+	else:
+		print("still")
 
 # Called on user input
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == 2: #and event.button_index == 1:
-		if event.pressed:
-			mouse_click_position = event.position
-		else:
-			mouse_release_position = event.position
-			var force_vector = dlib.xy_to_vector([mouse_click_position.x-mouse_release_position.x, mouse_click_position.y-mouse_release_position.y])
-			force_vector[0] += Camera.rotation.y
-			if FIXED_FORCE:
-				force_vector[1] = FORCE
-			else:
-				force_vector[1] *= FORCE_MULT
-			Ball.apply_user_force(force_vector)
+	if event is InputEventMouseButton and event.button_index == 2:
+		print("tracing")
 	
-	if event is InputEventMouseButton and event.button_index == 1: #and event.button_index == 1:
-		if event.pressed:
-			projectile_click_position = event.position
-		else:
-			projectile_release_position = event.position
-			fire()
-
+	#if event is InputEventMouseButton and event.button_index == 2:
+	#	if event.pressed:
+	#		MOUSE_CLICK_POSITION = event.position
+	#	else:
+	#		MOUSE_RELEASE_POSITION = event.position
+	#		var force_vector = dlib.xy_to_vector([MOUSE_CLICK_POSITION.x-MOUSE_RELEASE_POSITION.x, MOUSE_CLICK_POSITION.y-MOUSE_RELEASE_POSITION.y])
+	#		force_vector[0] += fmod(Camera.rotation.y, deg_to_rad(360))
+	#		Ball.apply_user_force(force_vector)
+	
 	#var screensize = get_viewport().size
 	#if event is InputEventMouseMotion:
 	#	if event.position[1]/screensize[1] < 0.1 or event.position[1]/screensize[1] > 0.9:
@@ -111,22 +99,6 @@ func process_WASD(key):
 func update_movement_mode(NEW_MODE):
 	MOVEMENT_MODE = NEW_MODE
 	Camera.set_camera_mode(NEW_MODE)
-
-## Fire a projectile
-func fire():
-	var raw_fire_xy = [projectile_click_position.x - projectile_release_position.x, projectile_click_position.y - projectile_release_position.y]
-	var firing_angle = dlib.xy_to_vector(raw_fire_xy)[0] + deg_to_rad(180) + Camera.rotation.y
-	var firing_origin = dlib.get_offset_from_point($Ball.position, firing_angle, $Ball/CollisionShape3D.shape.radius * 1.5)
-	
-	var projectile = BULLET_SCENE.instantiate()
-	projectile.position.x = firing_origin[0]
-	projectile.position.y = $Ball.position.y
-	projectile.position.z = firing_origin[1]
-	add_sibling(projectile)
-	
-	var projectile_velocity_change = dlib.vector_to_xy([firing_angle, 20])
-	projectile.linear_velocity.x = projectile_velocity_change[0]
-	projectile.linear_velocity.z = projectile_velocity_change[1]
 
 ## UTILITY ---------------------------------------------------------------------
 

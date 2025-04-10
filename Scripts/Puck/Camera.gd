@@ -14,8 +14,8 @@ var CAMERA_MODE: CAMERA_MODE_ENUM
 
 ## Defaults
 var DEFAULT_DISTANCE = 10
-var DEFAULT_HEIGHT = 10
-var DEFAULT_GRADE = deg_to_rad(-45)
+var DEFAULT_HEIGHT = 25
+var DEFAULT_GRADE = deg_to_rad(-70)
 
 ## Camera Movement Tracking
 var DISTANCE = DEFAULT_DISTANCE
@@ -42,6 +42,7 @@ func _ready():
 func _process(delta):
 	if CAMERA_MODE == CAMERA_MODE_ENUM.SURROUND:
 		apply_offset()
+		pass
 	if CAMERA_MODE == CAMERA_MODE_ENUM.LEASHED:
 		center_camera()
 	if CAMERA_MODE == CAMERA_MODE_ENUM.SPRINT:
@@ -58,7 +59,7 @@ func set_camera_mode(MOVEMENT_MODE):
 	if MOVEMENT_MODE == $"..".MOVEMENT_MODE_ENUM.ORBIT:
 		CAMERA_MODE = CAMERA_MODE_ENUM.SURROUND
 	if MOVEMENT_MODE == $"..".MOVEMENT_MODE_ENUM.FOLLOW:
-		CAMERA_MODE = CAMERA_MODE_ENUM.LEASHED
+		#CAMERA_MODE = CAMERA_MODE_ENUM.LEASHED
 		center_camera()
 	if MOVEMENT_MODE == $"..".MOVEMENT_MODE_ENUM.EXTEND:
 		CAMERA_MODE = CAMERA_MODE_ENUM.SPRINT
@@ -89,7 +90,6 @@ func rotate_vertical(up):
 
 ## "Sprints" the camera toward the cursor
 func sprint(delta):
-	
 	# Get direction to move camera
 	var cursor_position = get_viewport().get_mouse_position()
 	var screensize = get_viewport().size
@@ -146,8 +146,8 @@ func look_at_ball():
 
 ## Returns current rotation change needed to look directly at ball
 func get_rotation_to_ball():
-	var vector = dlib.xy_to_vector([$".".position.x - $"../Ball".position.x, $".".position.z - $"../Ball".position.z])
-	return vector[0] - $".".rotation.y
+	var angle = dlib.xy_to_angle([$".".position.x - $"../Ball".position.x, $".".position.z - $"../Ball".position.z])
+	return angle - $".".rotation.y
 
 ## Updates POSITION variable
 func set_position(new_position):

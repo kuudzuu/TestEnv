@@ -12,7 +12,6 @@ albedo_texture = ExtResource("1_hjd4n")
 
 [node name="RigidBody3D" type="RigidBody3D"]
 gravity_scale = 0.0
-linear_velocity = Vector3(0, 20, 0)
 script = ExtResource("1_i1icy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
