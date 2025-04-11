@@ -1,18 +1,18 @@
 [gd_scene load_steps=6 format=3 uid="uid://calodvgwwykfb"]
 
-[ext_resource type="Texture2D" uid="uid://dx5xlq4jyyf7p" path="res://Textures/image - Copy.png" id="1_hjd4n"]
-[ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.gd" id="1_i1icy"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.gd" id="1_ay3hq"]
+[ext_resource type="Texture2D" uid="uid://dx5xlq4jyyf7p" path="res://Textures/image - Copy.png" id="2_tlwdr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p2ek1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_abil0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_856jx"]
-albedo_texture = ExtResource("1_hjd4n")
+albedo_texture = ExtResource("2_tlwdr")
 
 [node name="RigidBody3D" type="RigidBody3D"]
 gravity_scale = 0.0
-script = ExtResource("1_i1icy")
+script = ExtResource("1_ay3hq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0)

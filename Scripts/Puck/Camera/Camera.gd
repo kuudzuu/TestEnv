@@ -55,13 +55,13 @@ func _input(event):
 ## BULK ------------------------------------------------------------------------
 
 ## Sets the CAMERA_MODE based on paret's MOVEMENT_MODE
-func set_camera_mode(MOVEMENT_MODE):
-	if MOVEMENT_MODE == $"..".MOVEMENT_MODE_ENUM.ORBIT:
+func set_camera_mode(VIEWING_MODE):
+	if VIEWING_MODE == $"..".VIEWING_MODE_ENUM.ORBIT:
 		CAMERA_MODE = CAMERA_MODE_ENUM.SURROUND
-	if MOVEMENT_MODE == $"..".MOVEMENT_MODE_ENUM.FOLLOW:
+	if VIEWING_MODE == $"..".VIEWING_MODE_ENUM.FOLLOW:
 		#CAMERA_MODE = CAMERA_MODE_ENUM.LEASHED
 		center_camera()
-	if MOVEMENT_MODE == $"..".MOVEMENT_MODE_ENUM.EXTEND:
+	if VIEWING_MODE == $"..".VIEWING_MODE_ENUM.EXTEND:
 		CAMERA_MODE = CAMERA_MODE_ENUM.SPRINT
 
 ## Rotates the camera horizontally, according to CAMERA_MODE
@@ -115,34 +115,32 @@ func reset_camera():
 	GRADE = DEFAULT_GRADE
 	
 	apply_offset()
-	look_at_ball()
+	face_ball()
+	$".".rotation.x = GRADE
 
 ## Recenters camera on ball
 func center_camera():
 	# TODO: Make smooth
 	DISTANCE = DEFAULT_DISTANCE
 	HEIGHT = DEFAULT_HEIGHT
-	GRADE = DEFAULT_GRADE
+	#GRADE = $".".rotation.y
 	
 	var velocity_angle = dlib.xy_to_vector([$"../Ball".linear_velocity.x, $"../Ball".linear_velocity.z])
 	OFFSET_POSITION = dlib.vector_to_xy([velocity_angle[0] + deg_to_rad(180), DISTANCE])
 	
 	apply_offset()
-	look_at_ball()
+	face_ball()
 
 ## Sets camera position by setting cam position to ball position + offset position
 func apply_offset():
 	$".".position.x = $"../Ball".position.x + OFFSET_POSITION[0]
 	$".".position.y = $"../Ball".position.y + HEIGHT
 	$".".position.z = $"../Ball".position.z + OFFSET_POSITION[1]
-	pass
 
 ## Sets rotation of camera to face ball
-func look_at_ball():
+func face_ball():
 	var new_angle = get_rotation_to_ball()
 	swivel_by(new_angle)
-	$".".rotation.x = GRADE
-	pass
 
 ## Returns current rotation change needed to look directly at ball
 func get_rotation_to_ball():

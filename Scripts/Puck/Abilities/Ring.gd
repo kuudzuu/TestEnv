@@ -5,7 +5,7 @@ extends Node
 var dlib = preload("res://Scripts/Utility/dlib.gd").new()
 
 ## Scenes
-@onready var BASIC_PROJ = preload("res://Scenes/Projectiles/Bullet.tscn")
+@onready var BASIC_PROJ = preload("res://Scenes/Entities/Bullet.tscn")
 
 ## User Input
 var PROJECTILE_CLICK_POSITION: Vector2

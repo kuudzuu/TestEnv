@@ -1,45 +1,58 @@
-[gd_scene load_steps=23 format=3 uid="uid://dap56umf1e6s0"]
+[gd_scene load_steps=28 format=3 uid="uid://dap56umf1e6s0"]
 
-[ext_resource type="Texture2D" uid="uid://ch37522twyn3n" path="res://Textures/B4F70D2B-A964-42E3-A37A-BAC6613ADCC0.png" id="1_j2c4i"]
-[ext_resource type="Texture2D" uid="uid://c4rf0ftsw7fka" path="res://Textures/IMG_1268.png" id="2_3osih"]
-[ext_resource type="Texture2D" uid="uid://cyt6kf7rncopx" path="res://Textures/IMG_0509 - Copy.PNG" id="3_m02ug"]
-[ext_resource type="Texture2D" uid="uid://ctldrymdl8cfb" path="res://Textures/Screenshot 2025-01-07 182717.png" id="4_2qhaj"]
-[ext_resource type="Texture2D" uid="uid://do2ye7anxs31n" path="res://Textures/enclosedDSC00656.png" id="5_xeu81"]
-[ext_resource type="Texture2D" uid="uid://dclckbego4488" path="res://Textures/IMG_9689.png" id="6_uqj6r"]
-[ext_resource type="Texture2D" uid="uid://beol0k8nepo40" path="res://Textures/9B145A51-7D9C-4EB7-A54D-CCA48D0359D5.png" id="7_2mu0k"]
+[ext_resource type="Texture2D" uid="uid://ch37522twyn3n" path="res://Textures/B4F70D2B-A964-42E3-A37A-BAC6613ADCC0.png" id="1_rlbvy"]
+[ext_resource type="Script" path="res://Scripts/Terrain/Arena.gd" id="1_uxajb"]
+[ext_resource type="Texture2D" uid="uid://c4rf0ftsw7fka" path="res://Textures/IMG_1268.png" id="2_hw0xa"]
+[ext_resource type="Script" path="res://Scripts/Terrain/KillFloor.gd" id="3_f2d7y"]
+[ext_resource type="Texture2D" uid="uid://ctldrymdl8cfb" path="res://Textures/Screenshot 2025-01-07 182717.png" id="4_tp7d1"]
+[ext_resource type="Texture2D" uid="uid://6031kcakrtrg" path="res://Textures/BoxinSky - Copy.png" id="5_qj3w0"]
+[ext_resource type="Texture2D" uid="uid://do2ye7anxs31n" path="res://Textures/enclosedDSC00656.png" id="5_wdc1u"]
+[ext_resource type="Texture2D" uid="uid://dclckbego4488" path="res://Textures/IMG_9689.png" id="6_a4won"]
+[ext_resource type="Texture2D" uid="uid://d1ywwfd1suxqr" path="res://Textures/IMG_1909 - Copy.png" id="6_hb2pa"]
+[ext_resource type="Texture2D" uid="uid://beol0k8nepo40" path="res://Textures/9B145A51-7D9C-4EB7-A54D-CCA48D0359D5.png" id="7_hcxro"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5o0ph"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wg6x1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xl8h"]
-albedo_texture = ExtResource("1_j2c4i")
+albedo_texture = ExtResource("1_rlbvy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_25d04"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2eo0v"]
-albedo_texture = ExtResource("2_3osih")
+albedo_texture = ExtResource("2_hw0xa")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ipegl"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yp5pb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tuy4"]
-albedo_texture = ExtResource("3_m02ug")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbt1u"]
+albedo_texture = ExtResource("5_qj3w0")
+albedo_texture_force_srgb = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hmvui"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnu6y"]
-albedo_texture = ExtResource("4_2qhaj")
+albedo_texture = ExtResource("4_tp7d1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqhur"]
-albedo_texture = ExtResource("5_xeu81")
+albedo_texture = ExtResource("5_wdc1u")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nu00o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbvul"]
-albedo_texture = ExtResource("6_uqj6r")
+albedo_texture = ExtResource("6_a4won")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbkqr"]
+albedo_color = Color(1, 0.737255, 0.678431, 1)
+albedo_texture = ExtResource("6_hb2pa")
+emission_enabled = true
+emission = Color(0.0588235, 0.0392157, 0.0352941, 1)
+clearcoat_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cutar"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_axigl"]
-panorama = ExtResource("7_2mu0k")
+panorama = ExtResource("7_hcxro")
 
 [sub_resource type="Sky" id="Sky_ghwuh"]
 sky_material = SubResource("PanoramaSkyMaterial_axigl")
@@ -49,6 +62,7 @@ background_mode = 2
 sky = SubResource("Sky_ghwuh")
 
 [node name="Arena" type="Node3D"]
+script = ExtResource("1_uxajb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.473519, 0.703052, 0.530564, -0.836031, 0.548334, 0.0195436, -0.277186, -0.452822, 0.84742, 0.254549, 28.1997, -3.74318)
@@ -71,7 +85,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00130287, 0, 3.35694e-06)
 material = SubResource("StandardMaterial3D_4xl8h")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64855, 0.697107, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64855, 0.697107, 6.89725)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area/RigidBody3D"]
 shape = SubResource("BoxShape3D_25d04")
@@ -101,20 +115,25 @@ shape = SubResource("BoxShape3D_25d04")
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_2eo0v")
 
+[node name="KillFloor" type="Node3D" parent="Area"]
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, 245.879, 0)
+
+[node name="Area3D" type="Area3D" parent="Area/KillFloor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -260.694, 0)
+script = ExtResource("3_f2d7y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area/KillFloor/Area3D"]
+shape = SubResource("BoxShape3D_yp5pb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area/KillFloor/Area3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_qbt1u")
+
 [node name="Walls" type="Node" parent="."]
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0.5, 50)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D3"]
-shape = SubResource("BoxShape3D_ipegl")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Walls/StaticBody3D3/CollisionShape3D"]
-material = SubResource("StandardMaterial3D_1tuy4")
 
 [node name="Obstacles" type="Node" parent="."]
 
-[node name="Left Jungle" type="Node" parent="Obstacles"]
+[node name="Left Jungle" type="Node3D" parent="Obstacles"]
 
 [node name="SAMPLE" type="StaticBody3D" parent="Obstacles/Left Jungle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.7301, 6.30827, 16.5641)
@@ -313,7 +332,8 @@ shape = SubResource("BoxShape3D_hmvui")
 transform = Transform3D(1, -1.16415e-10, -2.48148e-11, 0.000106812, 1, -7.21587e-08, -4.82842e-10, -8.2058e-13, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
-[node name="Right Steppes" type="Node" parent="Obstacles"]
+[node name="Right Steppes" type="Node3D" parent="Obstacles"]
+transform = Transform3D(0.362243, 0, 0.932084, 0, 1, 0, -0.932084, 0, 0.362243, -8.05674, 1.06158, 11.0239)
 
 [node name="Right Triangle" type="StaticBody3D" parent="Obstacles/Right Steppes"]
 transform = Transform3D(19.7043, -0.856551, 0, 3.4262, 4.92609, 0, 0, 0, 100, 26, -9.92557, 0)
@@ -370,18 +390,133 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 material = SubResource("StandardMaterial3D_tqhur")
 
-[node name="North Rink" type="Node" parent="Obstacles"]
+[node name="Globe" type="Node3D" parent="Obstacles"]
 
-[node name="Globe" type="StaticBody3D" parent="Obstacles/North Rink"]
-transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 1.86812, -131.534, -97.0491)
+[node name="Globe" type="StaticBody3D" parent="Obstacles/Globe"]
+transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 101.347, -131.534, 4.26499)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/North Rink/Globe"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Globe/Globe"]
 shape = SubResource("SphereShape3D_nu00o")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Obstacles/North Rink/Globe/CollisionShape3D"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Obstacles/Globe/Globe/CollisionShape3D"]
 radial_segments = 64
 rings = 32
 material = SubResource("StandardMaterial3D_xbvul")
 
+[node name="South Rink" type="Node3D" parent="Obstacles"]
+
+[node name="Right Triangle6" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(1.8063, 1.65528, 93.9279, 3.36038, 4.62275, -34.202, -19.6327, 0.943533, 2.78771, -38.3198, -21.5754, 107.251)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle6"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle6/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="Right Triangle8" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(19.5908, -0.881855, -9.69054, 3.60532, 4.91533, 3.29644, 1.78901, -0.248794, 99.4748, -36.7227, -13.021, 95.2143)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle8"]
+transform = Transform3D(1, 5.47152e-09, 2.98023e-08, -1.47149e-07, 1, -1.2517e-06, 1.86265e-09, 1.62981e-09, 1, 0.19633, -0.1414, -0.00388455)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle8/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="Right Triangle9" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(19.4852, 0.459807, 20.5809, -2.10164, 4.96505, 5.37348, -3.98858, -0.369894, 97.7116, -45.3874, 0.680924, 107.3)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle9"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle9/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="Right Triangle10" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(19.9236, -0.396522, -3.65261, 1.68946, 4.90605, 17.3465, 0.441661, -0.879441, 98.4162, -54.4793, -4.3812, 120.877)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle10"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle10/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="Right Triangle11" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(14.5585, -0.76741, -66.8255, 4.62892, 4.86211, 2.87723, 12.9082, -0.878047, 74.3376, 7.13785, -6.54061, 85.2909)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle11"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle11/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="Right Triangle13" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(8.08962, -2.21582, -1.53575e-06, -0.532444, -0.121492, 49.9097, -8.84729, -2.01875, -3.00365, 19.7047, -17.1508, 106.416)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle13"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 1.91309, 5.65265, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle13/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 1.91309, 5.65265, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="Right Triangle12" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(16.1557, -1.87085, 45.5497, 4.55852, 4.55437, 34.4032, -10.8725, -0.870423, 82.1075, 16.3807, -24.3229, 60.3613)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle12"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle12/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(2.60879, 1.15413e-08, 19.9811, -4.61131, 9.97037, 0.0668962, -59.7656, -0.769278, 0.867021, -3.8838, -3.09995, 76.076)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/South Rink/StaticBody3D3"]
+shape = SubResource("BoxShape3D_cutar")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/South Rink/StaticBody3D3"]
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(75, 0, 0, 0, 10, 0, 0, 0, 30, 47.2734, -2.70487, 63.9542)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/South Rink/StaticBody3D"]
+shape = SubResource("BoxShape3D_cutar")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/South Rink/StaticBody3D"]
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(65, 0, 0, 0, 10, 0, 0, 0, 80, -47.5924, -1.26269, 89.2033)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/South Rink/StaticBody3D2"]
+shape = SubResource("BoxShape3D_cutar")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/South Rink/StaticBody3D2"]
+material = SubResource("StandardMaterial3D_jbkqr")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qb7yy")
+
+[connection signal="area_entered" from="Area/KillFloor/Area3D" to="Area/KillFloor/Area3D" method="_on_area_entered"]
