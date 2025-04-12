@@ -45,6 +45,10 @@ radius = 0.05
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("4_i3mi0")
 GRAVITY_MULT = 12
+PUCK_MAX_SPEED = null
+PUCK_MAX_ANGULAR_SPEED = null
+PIVOT_BOOST = null
+BREAK_SPEED = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
 shape = SubResource("SphereShape3D_tih6i")

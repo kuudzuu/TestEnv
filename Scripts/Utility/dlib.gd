@@ -12,6 +12,9 @@ func xy_to_angle(xy):
 func xy_to_mag(xy):
 	return sqrt(pow(xy[0], 2) + pow(xy[1], 2))
 
+func xyz_to_mag(xyz):
+	return sqrt(pow(xyz[0], 2) + pow(xyz[1], 2) + pow(xyz[2], 2))
+
 ## Convert array of [angle, magnitude] to array of [x, y]
 func vector_to_xy(vector):
 	var x = vector[1] * sin(vector[0])
@@ -30,3 +33,9 @@ func norm_cam_rot(rotation):
 func point_by_vector_offset(point, vector):
 	var added_offset = vector_to_xy(vector)
 	return [point.x + added_offset[0], point.z + added_offset[1]]
+
+## Blends values a and b together based on alteration percent t.
+## t is clamped between 0 and 1
+## When t is 0, a is output. When t is 1, b is output.
+func blend_values_linear(a, b, t):
+	pass

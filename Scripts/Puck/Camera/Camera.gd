@@ -14,7 +14,7 @@ var CAMERA_MODE: CAMERA_MODE_ENUM
 
 ## Defaults
 var DEFAULT_DISTANCE = 10
-var DEFAULT_HEIGHT = 25
+var DEFAULT_HEIGHT = 35
 var DEFAULT_GRADE = deg_to_rad(-70)
 
 ## Camera Movement Tracking

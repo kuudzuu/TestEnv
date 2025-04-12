@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dap56umf1e6s0"]
+[gd_scene load_steps=29 format=3 uid="uid://dap56umf1e6s0"]
 
 [ext_resource type="Texture2D" uid="uid://ch37522twyn3n" path="res://Textures/B4F70D2B-A964-42E3-A37A-BAC6613ADCC0.png" id="1_rlbvy"]
 [ext_resource type="Script" path="res://Scripts/Terrain/Arena.gd" id="1_uxajb"]
@@ -18,21 +18,27 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xl8h"]
 albedo_texture = ExtResource("1_rlbvy")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_25d04"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2eo0v"]
-albedo_texture = ExtResource("2_hw0xa")
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_yp5pb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbt1u"]
 albedo_texture = ExtResource("5_qj3w0")
 albedo_texture_force_srgb = true
+distance_fade_mode = 1
+distance_fade_min_distance = 350.0
+distance_fade_max_distance = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_25d04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2eo0v"]
+albedo_texture = ExtResource("2_hw0xa")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hmvui"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnu6y"]
 albedo_texture = ExtResource("4_tp7d1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g7jv"]
+albedo_texture = ExtResource("5_wdc1u")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqhur"]
 albedo_texture = ExtResource("5_wdc1u")
@@ -84,37 +90,6 @@ shape = SubResource("BoxShape3D_wg6x1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00130287, 0, 3.35694e-06)
 material = SubResource("StandardMaterial3D_4xl8h")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64855, 0.697107, 6.89725)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area/RigidBody3D"]
-shape = SubResource("BoxShape3D_25d04")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Area/RigidBody3D"]
-material = SubResource("StandardMaterial3D_2eo0v")
-
-[node name="RigidBody3D2" type="RigidBody3D" parent="Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06532, 1.36504, -5.8812)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area/RigidBody3D2"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-shape = SubResource("BoxShape3D_25d04")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Area/RigidBody3D2"]
-size = Vector3(2, 2, 2)
-material = SubResource("StandardMaterial3D_2eo0v")
-
-[node name="RigidBody3D3" type="RigidBody3D" parent="Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89228, 1.36504, 19.3049)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area/RigidBody3D3"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-shape = SubResource("BoxShape3D_25d04")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Area/RigidBody3D3"]
-size = Vector3(2, 2, 2)
-material = SubResource("StandardMaterial3D_2eo0v")
-
 [node name="KillFloor" type="Node3D" parent="Area"]
 transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, 245.879, 0)
 
@@ -126,8 +101,42 @@ script = ExtResource("3_f2d7y")
 shape = SubResource("BoxShape3D_yp5pb")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Area/KillFloor/Area3D/CollisionShape3D"]
-transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 7.81597e-14, 0, 1, 0, -7.81597e-14, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_qbt1u")
+
+[node name="Boxes" type="Node3D" parent="Area"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Area/Boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64855, 0.697107, 6.89725)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area/Boxes/RigidBody3D"]
+shape = SubResource("BoxShape3D_25d04")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area/Boxes/RigidBody3D"]
+material = SubResource("StandardMaterial3D_2eo0v")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="Area/Boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06532, 1.36504, -5.8812)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area/Boxes/RigidBody3D2"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_25d04")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area/Boxes/RigidBody3D2"]
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_2eo0v")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="Area/Boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89228, 1.36504, 19.3049)
+gravity_scale = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area/Boxes/RigidBody3D3"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_25d04")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area/Boxes/RigidBody3D3"]
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_2eo0v")
 
 [node name="Walls" type="Node" parent="."]
 
@@ -168,7 +177,7 @@ transform = Transform3D(1, -5.82077e-11, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="Obstacles/Left Jungle"]
-transform = Transform3D(30.1675, 0.027383, -7.4899, -21.2615, 0.090501, -0.11674, 33.7323, 0.0325537, 6.62479, -52.392, 10.4368, -34.4848)
+transform = Transform3D(39.0491, 0.0443964, -4.39274, -22.3881, 0.0888344, 1.01755, 21.7701, 0.0117222, 8.92572, -52.392, 9.0303, -34.4848)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D3"]
 transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -179,18 +188,29 @@ transform = Transform3D(1, -1.16415e-10, 0, 7.62939e-06, 1, 0, 0, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
 [node name="StaticBody3D13" type="StaticBody3D" parent="Obstacles/Left Jungle"]
-transform = Transform3D(84.3951, 0.0297005, 4.46693, -6.56004, 0.0883624, -4.63578, -53.2394, 0.0361934, 7.65219, -42.7706, 19.2262, -67.0457)
+transform = Transform3D(71.785, 0.0289612, 4.50439, -5.61589, 0.0891065, -4.49042, -45.1706, 0.0349468, 7.71665, -38.3308, 19.0887, -70.6694)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D13"]
-transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, -3.8147e-06, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_hmvui")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D13/CollisionShape3D"]
 transform = Transform3D(1, -1.16415e-10, 0, 7.62939e-06, 1, 0, 0, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
+[node name="StaticBody3D19" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(43.4488, 0.00901012, 7.78856, 12.8777, 0.0948907, -2.56383, -53.3513, 0.030242, 5.72408, -107.077, 16.2344, -17.3803)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D19"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D19/CollisionShape3D"]
+transform = Transform3D(1, -1.45519e-10, -1.86265e-09, 6.10352e-05, 1, -3.8147e-06, -2.38419e-07, -4.65661e-10, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
 [node name="StaticBody3D6" type="StaticBody3D" parent="Obstacles/Left Jungle"]
-transform = Transform3D(28.1259, -0.0347901, 0, 10.437, 0.0937531, 0, 0, 0, 10, -64.0315, -5.21952, -34.7849)
+transform = Transform3D(41.0448, -0.0198449, 5.35489, 19.1782, 0.0886294, -2.5954, -21.1548, 0.0418449, 8.03673, -70.6006, -4.69708, -48.1151)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D6"]
 transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -223,14 +243,14 @@ transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
 [node name="StaticBody3D11" type="StaticBody3D" parent="Obstacles/Left Jungle"]
-transform = Transform3D(13.4099, 0.0855941, -2.59922, -10.7304, 0.0437348, 8.25101, 24.5974, -0.0275848, 5.01647, -97.8243, 5.13218, 32.7272)
+transform = Transform3D(14.8486, 0.0792831, -3.55586, -6.60438, 0.0510295, 8.31345, 25.2171, -0.0333195, 4.27111, -97.8243, 5.13218, 32.7272)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D11"]
 transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_hmvui")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D11/CollisionShape3D"]
-transform = Transform3D(1, -2.91038e-10, -2.98023e-08, -2.28882e-05, 1, -1.90735e-06, -2.38419e-07, 4.65661e-10, 1, 0, 0, 0)
+transform = Transform3D(1, -2.32831e-10, -1.49012e-08, -7.62939e-06, 1, -7.62939e-06, -2.38419e-07, 6.98492e-10, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
 [node name="StaticBody3D12" type="StaticBody3D" parent="Obstacles/Left Jungle"]
@@ -241,6 +261,146 @@ transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_hmvui")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D12/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D15" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(-6.98086, 0.0081522, -9.69127, 12.012, 0.0916142, -0.190734, 26.589, -0.0392477, -2.45824, -132.268, 15.8797, 29.2535)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D15"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D15/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D21" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(-6.96748, 0.0940832, -4.36018, -0.35402, 0.0293684, 14.3379, 39.3869, 0.0169071, -0.642435, -135.362, 14.9949, 15.2565)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D21"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D21/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D21/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D26" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(-7.22224, 0.0933514, 1.54879, 0.227486, -0.0313939, 4.74713, 39.3419, 0.0173186, 0.256872, -137.213, 21.9649, 15.2565)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D26"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D26/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D26/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D24" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(-2.96796, 0.0525168, -12.5694, 0.131627, 0.0847848, 7.95299, 19.7781, 0.00731655, -1.93913, -132.499, 13.3231, 15.3417)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D24"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D24/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D23" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(-12.704, 0.0602102, -7.25591, 2.42761, 0.0696349, 10.6105, 15.255, 0.0390604, -7.73107, -126.411, 13.835, 0.502722)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D23"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D23/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D22" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(-3.20692, 0.0777583, -9.11987, 4.30061, 0.0628686, 11.2101, 19.2671, -0.00109037, -4.02017, -135.268, 14.9949, 33.3309)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D22"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D22/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D17" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(27.7958, 0.0277182, -2.54394, -4.75571, 0.0900839, 4.04177, 10.236, -0.0334152, 8.78592, -115.777, 17.1675, 43.4869)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D17"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D17/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D27" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(23.43, 0.0220002, -2.70663, -5.00179, 0.0974715, 0.995074, 7.14277, -0.00391063, 9.57518, -115.777, 16.1683, 41.5549)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D27"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D27/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D20" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(19.1977, 0.00145534, -2.24013, -3.43926, 0.0819347, -4.37519, 4.42943, 0.0573113, 6.31185, -113.011, 16.1355, 36.3264)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D20"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D20/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D18" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(28.7202, 0.0229905, -1.75039, -4.6325, 0.0919066, 3.62594, 7.32704, -0.0320096, 9.15361, -93.0813, 13.5305, 51.0311)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D18"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D18/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D25" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(47.172, 0.0330253, -0.146276, -8.13513, 0.053806, 4.13527, 14.4439, -0.0775516, 2.8068, -102.905, 16.4183, 51.0311)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D25"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D25/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="StaticBody3D16" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(29.9272, -0.00175367, -0.673559, 0.734003, 0.099433, 1.03488, 1.95478, -0.0104884, 9.92348, -119.037, 10.0819, 13.8166)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/StaticBody3D16"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/StaticBody3D16/CollisionShape3D"]
 transform = Transform3D(1, -1.16415e-10, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
@@ -278,14 +438,69 @@ transform = Transform3D(1, -2.32831e-10, -8.88178e-16, 7.62939e-06, 1, 2.27374e-
 material = SubResource("StandardMaterial3D_jnu6y")
 
 [node name="platl2" type="StaticBody3D" parent="Obstacles/Left Jungle"]
-transform = Transform3D(9.78628, 0.0205641, 0, -2.05641, 0.0978628, 0, 0, 0, 14, -74.775, 21.187, -42.963)
+transform = Transform3D(9.47575, 0.0319513, 0.0504998, -2.98924, 0.0890389, -4.80615, -1.129, 0.0324221, 13.1491, -76.0484, 21.926, -46.2713)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platl2"]
 transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_hmvui")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platl2/CollisionShape3D"]
-transform = Transform3D(1, -5.82077e-11, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 5.72205e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="platl7" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(2.61409, 0.0719095, 9.01417, -5.92795, 0.0646046, -6.73194, -7.61748, -0.0255983, 8.33221, -63.3589, 14.9774, -38.7788)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platl7"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platl7/CollisionShape3D"]
+transform = Transform3D(1, -1.16415e-10, 0, 6.19888e-06, 1, 3.8147e-06, 7.45058e-09, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="platl4" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(9.97899, 0.00641897, 0.123955, -0.572473, 0.0937366, -4.81053, -0.303555, 0.034238, 13.147, -85.6389, 21.6581, -40.0051)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platl4"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platl4/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 5.72205e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="platl8" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(9.80032, -0.00937047, 2.45528, 0.882227, 0.0995345, 0.543415, -1.78198, -0.0022568, 13.7723, -84.0888, 20.4931, -36.4862)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platl8"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platl8/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 5.72205e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="platl5" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(-4.01704, -0.0641845, -9.14479, 0.992417, 0.0678567, -10.1892, 9.10377, -0.0357186, -2.92439, -96.631, 16.7317, -14.3904)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platl5"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platl5/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 5.72205e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="platl6" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(-6.54897, -0.0342528, -11.6466, -1.16328, 0.0935573, -4.82319, 13.4446, -0.00858983, -6.09046, -98.6301, 16.8671, -14.2996)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platl6"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platl6/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 5.72205e-06, 1, 0, 0, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
 [node name="platl3" type="StaticBody3D" parent="Obstacles/Left Jungle"]
@@ -300,7 +515,7 @@ transform = Transform3D(1, -5.82077e-11, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
 [node name="platlm" type="StaticBody3D" parent="Obstacles/Left Jungle"]
-transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 10, -84.7429, 27.1468, 0)
+transform = Transform3D(25, 0, 0, 0, 0.1, 0, 0, 0, 10, -82.2598, 27.1468, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platlm"]
 transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -308,6 +523,39 @@ shape = SubResource("BoxShape3D_hmvui")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platlm/CollisionShape3D"]
 transform = Transform3D(1, -5.82076e-11, 0, 3.8147e-06, 1, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="platlm2" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(32.2808, 0, 3.86453, 0, 0.1, 0, -13.5259, 0, 9.22309, -108.043, 27.145, 7.167)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platlm2"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platlm2/CollisionShape3D"]
+transform = Transform3D(1, -5.82076e-11, 0, 3.8147e-06, 1, 0, -1.19209e-07, 6.93889e-18, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="platlm3" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(23.0382, 0.0159041, 1.77126, -0.0465124, 0.0914077, -2.02768, -9.70775, 0.0373053, 4.21321, -109.377, 26.1381, 15.6326)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platlm3"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platlm3/CollisionShape3D"]
+transform = Transform3D(1, -8.73115e-11, 0, 3.8147e-06, 1, 0, -2.38419e-07, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_jnu6y")
+
+[node name="platlm4" type="StaticBody3D" parent="Obstacles/Left Jungle"]
+transform = Transform3D(23.0067, 0.0233917, 0.784178, 0.0849905, 0.0796826, -1.5105, -9.78185, 0.0557091, 1.83125, -108.434, 24.416, 18.8068)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Left Jungle/platlm4"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Left Jungle/platlm4/CollisionShape3D"]
+transform = Transform3D(1, -8.73115e-11, 0, 3.8147e-06, 1, 0, -2.38419e-07, 0, 1, 0, 0, 0)
 material = SubResource("StandardMaterial3D_jnu6y")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="Obstacles/Left Jungle"]
@@ -335,6 +583,66 @@ material = SubResource("StandardMaterial3D_jnu6y")
 [node name="Right Steppes" type="Node3D" parent="Obstacles"]
 transform = Transform3D(0.362243, 0, 0.932084, 0, 1, 0, -0.932084, 0, 0.362243, -8.05674, 1.06158, 11.0239)
 
+[node name="StaticBody3D15" type="StaticBody3D" parent="Obstacles/Right Steppes"]
+transform = Transform3D(69.9119, 0.16276, 2.67164, -2.07201, 4.98353, -5.28577, -2.83489, 0.371431, 69.749, 181.137, 23.6475, 1.84468)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Right Steppes/StaticBody3D15"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Right Steppes/StaticBody3D15/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0g7jv")
+
+[node name="StaticBody3D16" type="StaticBody3D" parent="Obstacles/Right Steppes"]
+transform = Transform3D(4.99371, 1.6276, 2.67163, -0.148001, 49.8353, -5.28577, -0.202492, 3.71431, 69.749, 181.137, 23.6475, 1.84468)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Right Steppes/StaticBody3D16"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Right Steppes/StaticBody3D16/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0g7jv")
+
+[node name="StaticBody3D17" type="StaticBody3D" parent="Obstacles/Right Steppes"]
+transform = Transform3D(2.39983, 4.02189, 61.1514, -0.148001, 49.8353, -5.28577, -4.38394, 0.519216, 33.6536, 161.867, 23.6475, -23.58)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Right Steppes/StaticBody3D17"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Right Steppes/StaticBody3D17/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0g7jv")
+
+[node name="StaticBody3D20" type="StaticBody3D" parent="Obstacles/Right Steppes"]
+transform = Transform3D(0.993665, 3.99521, 68.3754, -0.148001, 49.8353, -5.28577, -4.89804, -0.695332, 14.031, 162.257, 23.6475, -35.1262)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Right Steppes/StaticBody3D20"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Right Steppes/StaticBody3D20/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0g7jv")
+
+[node name="StaticBody3D18" type="StaticBody3D" parent="Obstacles/Right Steppes"]
+transform = Transform3D(3.58645, -1.57162, -48.7246, -0.148001, 49.8353, -5.28577, 3.48073, 3.73835, 49.9798, 161.048, 23.6475, 27.8023)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Right Steppes/StaticBody3D18"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Right Steppes/StaticBody3D18/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0g7jv")
+
+[node name="StaticBody3D19" type="StaticBody3D" parent="Obstacles/Right Steppes"]
+transform = Transform3D(-0.566317, -4.42075, 69.2737, 0.194667, 49.7436, 6.53381, -4.96402, 2.45507, -7.64685, 171.973, 23.6475, 49.2057)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Right Steppes/StaticBody3D19"]
+transform = Transform3D(1, -2.91038e-11, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_hmvui")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Right Steppes/StaticBody3D19/CollisionShape3D"]
+material = SubResource("StandardMaterial3D_0g7jv")
+
 [node name="Right Triangle" type="StaticBody3D" parent="Obstacles/Right Steppes"]
 transform = Transform3D(19.7043, -0.856551, 0, 3.4262, 4.92609, 0, 0, 0, 100, 26, -9.92557, 0)
 
@@ -346,8 +654,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 material = SubResource("StandardMaterial3D_tqhur")
 
+[node name="Right Triangle6" type="StaticBody3D" parent="Obstacles/Right Steppes"]
+transform = Transform3D(10.2361, -2.4753, -70.2119, 7.29867, 4.32577, -34.3997, 15.5548, -0.400835, 62.3455, 20.2698, -30.0102, 52.7221)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Right Steppes/Right Triangle6"]
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Right Steppes/Right Triangle6/CollisionPolygon3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_tqhur")
+
+[node name="Right Triangle7" type="StaticBody3D" parent="Obstacles/Right Steppes"]
+transform = Transform3D(19.6691, -0.863209, 5.48774, 3.62296, 4.67457, -30.5158, 0.0275617, 1.55026, 95.0721, 29.0908, -24.8483, 95.0248)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Right Steppes/Right Triangle7"]
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Right Steppes/Right Triangle7/CollisionPolygon3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_tqhur")
+
 [node name="Right Triangle4" type="StaticBody3D" parent="Obstacles/Right Steppes"]
-transform = Transform3D(10.5275, -1.47055, -79.7765, 7.38024, 4.62159, -9.72864, 15.32, -1.21588, 59.5068, 73.92, -11.2376, 9.52508)
+transform = Transform3D(10.5275, -1.47055, -79.7765, 7.38024, 4.62159, -9.72864, 15.32, -1.21588, 59.5068, 92.6841, -8.90911, -6.02413)
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Right Steppes/Right Triangle4"]
 polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
@@ -364,7 +694,7 @@ transform = Transform3D(17.7552, -2.29379, 3.77119, 9.20607, 4.42302, -7.48021, 
 polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Right Steppes/Right Triangle5/CollisionPolygon3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+transform = Transform3D(1, 0, -1.19209e-06, 2.38419e-07, 1, -1.19209e-06, -7.45058e-09, -4.65661e-10, 1, -4.76837e-07, 1.90735e-06, 0.5)
 polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 material = SubResource("StandardMaterial3D_tqhur")
 
@@ -380,9 +710,10 @@ polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 material = SubResource("StandardMaterial3D_tqhur")
 
 [node name="Right Triangle3" type="StaticBody3D" parent="Obstacles/Right Steppes"]
-transform = Transform3D(7.41651, -2.14553, 82.3624, 10.311, 4.16385, 20.1753, -15.4492, 1.74902, 53.0038, 75.1025, -19.1641, 0)
+transform = Transform3D(7.41651, -2.14553, 82.3624, 10.311, 4.16385, 20.1753, -15.4492, 1.74902, 53.0038, 75.1025, -18.6891, -2.38419e-07)
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Right Steppes/Right Triangle3"]
+transform = Transform3D(1, 0, 3.57628e-07, 0, 1, -4.76837e-07, 1.49012e-08, 0, 1, 0, 0, 0)
 polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Right Steppes/Right Triangle3/CollisionPolygon3D"]
@@ -393,12 +724,34 @@ material = SubResource("StandardMaterial3D_tqhur")
 [node name="Globe" type="Node3D" parent="Obstacles"]
 
 [node name="Globe" type="StaticBody3D" parent="Obstacles/Globe"]
-transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 101.347, -131.534, 4.26499)
+transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 66.8487, -144.948, 16.6232)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Globe/Globe"]
 shape = SubResource("SphereShape3D_nu00o")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Obstacles/Globe/Globe/CollisionShape3D"]
+radial_segments = 64
+rings = 32
+material = SubResource("StandardMaterial3D_xbvul")
+
+[node name="Globe2" type="StaticBody3D" parent="Obstacles/Globe"]
+transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 120.217, -126.521, 106.725)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Globe/Globe2"]
+shape = SubResource("SphereShape3D_nu00o")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Obstacles/Globe/Globe2/CollisionShape3D"]
+radial_segments = 64
+rings = 32
+material = SubResource("StandardMaterial3D_xbvul")
+
+[node name="Globe3" type="StaticBody3D" parent="Obstacles/Globe"]
+transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 125.824, -126.145, -70.9854)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Globe/Globe3"]
+shape = SubResource("SphereShape3D_nu00o")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Obstacles/Globe/Globe3/CollisionShape3D"]
 radial_segments = 64
 rings = 32
 material = SubResource("StandardMaterial3D_xbvul")
@@ -442,7 +795,7 @@ polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 material = SubResource("StandardMaterial3D_jbkqr")
 
 [node name="Right Triangle10" type="StaticBody3D" parent="Obstacles/South Rink"]
-transform = Transform3D(19.9236, -0.396522, -3.65261, 1.68946, 4.90605, 17.3465, 0.441661, -0.879441, 98.4162, -54.4793, -4.3812, 120.877)
+transform = Transform3D(19.9236, -0.396523, -1.27841, 1.68946, 4.90605, 6.07129, 0.441661, -0.879441, 34.4457, -54.4793, -5.22198, 118.799)
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle10"]
 transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
@@ -465,6 +818,30 @@ transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.3
 polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
 material = SubResource("StandardMaterial3D_jbkqr")
 
+[node name="Right Triangle14" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(-1.6025, 0.467789, 99.2384, -4.95397, 4.81244, -11.0739, -19.3103, -1.27343, -5.39476, 31.1378, 12.9578, 186.112)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle14"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle14/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="Right Triangle15" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(-11.2198, -0.0804463, 41.3833, 0.416876, 4.9961, 1.6776, -16.5512, 0.18037, -28.0109, 70.7696, 2.86988, 165.779)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle15"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle15/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 2, 2, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
 [node name="Right Triangle13" type="StaticBody3D" parent="Obstacles/South Rink"]
 transform = Transform3D(8.08962, -2.21582, -1.53575e-06, -0.532444, -0.121492, 49.9097, -8.84729, -2.01875, -3.00365, 19.7047, -17.1508, 106.416)
 
@@ -473,6 +850,18 @@ transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-0
 polygon = PackedVector2Array(1, 1, 1.91309, 5.65265, 3, 1)
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle13/CollisionPolygon3D"]
+transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
+polygon = PackedVector2Array(1, 1, 1.91309, 5.65265, 3, 1)
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="Right Triangle16" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(11.6729, 0.240576, 16.3181, -1.82765, 2.78544, 25.4036, -2.09822, -1.08786, 68.654, -45.9325, 3.72742, 152.443)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/South Rink/Right Triangle16"]
+transform = Transform3D(1, 3.72529e-09, -5.96046e-08, 5.96046e-08, 1, -1.3113e-06, 1.86265e-09, 1.62981e-09, 1, 0, 0, 0)
+polygon = PackedVector2Array(1, 1, 1.91309, 5.65265, 3, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/South Rink/Right Triangle16/CollisionPolygon3D"]
 transform = Transform3D(1, -2.23517e-08, 0, -5.96046e-08, 1, 9.53674e-07, 0, 2.32831e-10, 1, 0.0018363, 0.009202, 0.500207)
 polygon = PackedVector2Array(1, 1, 1.91309, 5.65265, 3, 1)
 material = SubResource("StandardMaterial3D_jbkqr")
@@ -514,6 +903,24 @@ transform = Transform3D(65, 0, 0, 0, 10, 0, 0, 0, 80, -47.5924, -1.26269, 89.203
 shape = SubResource("BoxShape3D_cutar")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/South Rink/StaticBody3D2"]
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(39.4792, -0.187887, 63.5356, -19.1865, 9.2281, 19.8058, -47.9402, -3.84798, 44.3955, -49.0435, 8.76916, 148.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/South Rink/StaticBody3D4"]
+shape = SubResource("BoxShape3D_cutar")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/South Rink/StaticBody3D4"]
+material = SubResource("StandardMaterial3D_jbkqr")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="Obstacles/South Rink"]
+transform = Transform3D(-13.2724, 0.67, 78.1308, -24.2144, 9.17275, -11.2652, -58.843, -3.92579, -12.9872, 18.9306, 8.76916, 148.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/South Rink/StaticBody3D5"]
+shape = SubResource("BoxShape3D_cutar")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/South Rink/StaticBody3D5"]
 material = SubResource("StandardMaterial3D_jbkqr")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
