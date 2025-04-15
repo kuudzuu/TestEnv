@@ -1,7 +1,7 @@
 extends Node
 
 var PUCK: Node3D
-var BALL: RigidBody3D
+var DISC: RigidBody3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,10 +15,10 @@ func _process(delta):
 	
 	
 	
-	if $".".overlaps_body(BALL):
+	if $".".overlaps_body(DISC):
 		$"../../..".kill_player()
 
 func initialize(puck_ref):
 	PUCK = puck_ref
 	var children = PUCK.get_children()
-	BALL = children[2]
+	DISC = children[1]

@@ -1,26 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://bv1bgtipqc16y"]
+[gd_scene load_steps=9 format=3 uid="uid://bv1bgtipqc16y"]
 
 [ext_resource type="Script" path="res://Scripts/Puck/PuckController.gd" id="1_ym5cp"]
 [ext_resource type="Script" path="res://Scripts/Puck/Camera/Camera.gd" id="2_rokli"]
-[ext_resource type="Script" path="res://Scripts/Puck/Abilities/Ring.gd" id="3_pi3jm"]
 [ext_resource type="Script" path="res://Scripts/Puck/Disc/Disc.gd" id="4_3q4l7"]
 [ext_resource type="Texture2D" uid="uid://bdliy02typurn" path="res://Textures/IMG_0499.png" id="5_so1gb"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h6lu"]
-albedo_color = Color(1, 0.419608, 0.0588235, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7p6j"]
-albedo_color = Color(0.301961, 0.721569, 0.239216, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qsdix"]
 friction = 0.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ay6ut"]
-height = 0.7
-radius = 1.5
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v8ywr"]
+height = 1.0
+radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hofl5"]
 albedo_texture = ExtResource("5_so1gb")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vxwyn"]
+height = 1.0
+radius = 2.0
 
 [node name="Puck" type="Node3D"]
 script = ExtResource("1_ym5cp")
@@ -29,22 +26,6 @@ script = ExtResource("1_ym5cp")
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 9.24047, 10.1172)
 script = ExtResource("2_rokli")
 
-[node name="Projectile Ring" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("3_pi3jm")
-
-[node name="Ring" type="CSGTorus3D" parent="Projectile Ring"]
-material_override = SubResource("StandardMaterial3D_1h6lu")
-inner_radius = 1.8
-outer_radius = 1.7
-sides = 32
-ring_sides = 12
-
-[node name="Pointer" type="CSGCylinder3D" parent="Projectile Ring"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -2.43269)
-material_override = SubResource("StandardMaterial3D_y7p6j")
-radius = 0.05
-
 [node name="Disc" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 physics_material_override = SubResource("PhysicsMaterial_qsdix")
@@ -52,14 +33,20 @@ script = ExtResource("4_3q4l7")
 GRAVITY_MULT = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Disc"]
-shape = SubResource("CylinderShape3D_ay6ut")
+shape = SubResource("CylinderShape3D_v8ywr")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Disc/CollisionShape3D"]
 light_color = Color(0.447059, 1, 1, 1)
 omni_range = 10.65
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Disc/CollisionShape3D"]
-radius = 1.5
-height = 0.7
+radius = 2.0
+height = 1.0
 sides = 24
+smooth_faces = false
 material = SubResource("StandardMaterial3D_hofl5")
+
+[node name="Area3D" type="Area3D" parent="Disc"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Disc/Area3D"]
+shape = SubResource("CylinderShape3D_vxwyn")

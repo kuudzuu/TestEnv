@@ -12,10 +12,9 @@ var disclib = preload("res://Scripts/Puck/Disc/disclib.gd").new()
 
 ## Puck Variables
 @export_group("Movement")
-@export var GRAVITY_MULT = 5
+@export var GRAVITY_MULT: int
 @export var PUCK_MAX_SPEED = 70
 @export var PUCK_MAX_ANGULAR_SPEED = 1
-@export var PIVOT_BOOST = 1.8
 @export var BREAK_SPEED = 1.05
 
 var BRAKING = false
@@ -25,42 +24,20 @@ var BRAKING = false
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
-	initialize_ball_params()
+	initialize_disc_params()
 	reset_disc()
 	cap_angular()
-	$"../Projectile Ring".visible = false
 
 ## BULK ------------------------------------------------------------------------
 
 ## Initializes this puck's specific values for all global puck parameters
-func initialize_ball_params():
+func initialize_disc_params():
 	$".".gravity_scale = GRAVITY_MULT
 
-## Takes in a single-frame user force and applies it to Ball
-## User force is in (angle, magnitude) format.
-func apply_force(force_vector):
-	# Calculating difference in travelling angle vs added angle
-	var alteration_percent = disclib.percent_diff_in_angles($".", force_vector)
-	
-	# Raw force addition
+func apply_direct_force(force_vector):
 	var xz_change = dlib.vector_to_xy(force_vector)
-	$".".linear_velocity.x -= xz_change[0]
-	$".".linear_velocity.z -= xz_change[1]
-	# Adding pivot boost
-	var xz_change_boost = dlib.vector_to_xy([force_vector[0], force_vector[1] * -1 * (0.05 if BRAKING else PIVOT_BOOST)])
-	$".".linear_velocity.x = dlib.blend_linear(xz_change_boost[0], $".".linear_velocity.x, alteration_percent)
-	$".".linear_velocity.z = dlib.blend_linear(xz_change_boost[1], $".".linear_velocity.z, alteration_percent)
-
-	# Raw force addition
-	var new_angular_x = -1 * xz_change[1]
-	var new_angular_z = xz_change[0]
-	# Accounting for pivot boosting
-	if !BRAKING:
-		$".".angular_velocity.x = dlib.blend_linear(new_angular_x, $".".angular_velocity.x, alteration_percent)
-		$".".angular_velocity.y = 0
-		$".".angular_velocity.z = dlib.blend_linear(new_angular_z, $".".angular_velocity.z, alteration_percent)
-	
-	cap_speed()
+	$".".linear_velocity.x = -1 * xz_change[0]
+	$".".linear_velocity.z = -1 * xz_change[1]
 
 
 ## UTILITY ---------------------------------------------------------------------
@@ -69,14 +46,12 @@ func reset_disc():
 	$".".linear_velocity = Vector3(0,0,0)
 	$".".angular_velocity = Vector3(0,0,0)
 	$".".position = Vector3(0,1,0)
+	$".".rotation = Vector3(0,0,0)
 
 func break_ball():
 	BRAKING = true
 	$".".linear_velocity.x *= 1 / BREAK_SPEED
 	$".".linear_velocity.z *= 1 / BREAK_SPEED
-	$".".angular_velocity.x *= 1 / BREAK_SPEED
-	$".".angular_velocity.y *= 1 / BREAK_SPEED
-	$".".angular_velocity.z *= 1 / BREAK_SPEED
 
 func stop_braking():
 	BRAKING = false

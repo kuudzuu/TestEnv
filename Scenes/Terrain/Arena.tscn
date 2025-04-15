@@ -14,6 +14,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5o0ph"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wg6x1"]
+size = Vector3(100, 1, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xl8h"]
 albedo_texture = ExtResource("1_rlbvy")
@@ -80,14 +81,14 @@ sky_mode = 1
 [node name="Area" type="Node" parent="."]
 
 [node name="Floor" type="StaticBody3D" parent="Area"]
-transform = Transform3D(100, 0, 0, 0, 0.1, 0, 0, 0, 100, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
 physics_material_override = SubResource("PhysicsMaterial_5o0ph")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area/Floor"]
 shape = SubResource("BoxShape3D_wg6x1")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Area/Floor/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00130287, 0, 3.35694e-06)
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -0.00130287, 0, 3.35694e-06)
 material = SubResource("StandardMaterial3D_4xl8h")
 
 [node name="KillFloor" type="Node3D" parent="Area"]

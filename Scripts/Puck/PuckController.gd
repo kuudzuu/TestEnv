@@ -47,15 +47,10 @@ func _input(event):
 ## BULK ------------------------------------------------------------------------
 
 func handle_movement_input():
-	if MOVEMENT_MODE == MOVEMENT_MODE_ENUM.DIRECT:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-			var added_force = disclib.input_to_direct_force(VIEWPORT.get_mouse_position(), CAMERA.rotation.y)
-			if added_force:
-				DISC.apply_force(added_force)
-		elif Input.is_action_just_released("right_click"): # added "right_click" to Godot input map
-			disclib.stop_movement_input()
-	else: # it's sling lol
-		pass
+	if Input.is_action_just_pressed("right_click"):
+		disclib.prime_direct_force(VIEWPORT.get_mouse_position())
+	elif Input.is_action_just_released("right_click"): # added "right_click" to Godot input map
+		DISC.apply_direct_force(disclib.trigger_direct_force(VIEWPORT.get_mouse_position(), CAMERA.rotation.y))
 
 ## bro trust
 func handle_camera_input():
