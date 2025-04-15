@@ -37,5 +37,6 @@ func point_by_vector_offset(point, vector):
 ## Blends values a and b together based on alteration percent t.
 ## t is clamped between 0 and 1
 ## When t is 0, a is output. When t is 1, b is output.
-func blend_values_linear(a, b, t):
-	pass
+func blend_linear(a, b, t):
+	t = clamp(t, 0.0, 1.0)
+	return (a * t) + (b * (1-t))

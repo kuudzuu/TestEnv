@@ -30,18 +30,15 @@ func _ready():
 	cap_angular()
 	$"../Projectile Ring".visible = false
 
-
 ## BULK ------------------------------------------------------------------------
 
 ## Initializes this puck's specific values for all global puck parameters
 func initialize_ball_params():
 	$".".gravity_scale = GRAVITY_MULT
 
-#func apply_force_attractor(force_vector)
-
 ## Takes in a single-frame user force and applies it to Ball
 ## User force is in (angle, magnitude) format.
-func apply_force_linear(force_vector):
+func apply_force(force_vector):
 	# Calculating difference in travelling angle vs added angle
 	var alteration_percent = ballib.percent_diff_in_angles($".", force_vector)
 	
@@ -51,16 +48,17 @@ func apply_force_linear(force_vector):
 	$".".linear_velocity.z -= xz_change[1]
 	# Adding pivot boost
 	var xz_change_boost = dlib.vector_to_xy([force_vector[0], force_vector[1] * -1 * (0.05 if BRAKING else PIVOT_BOOST)])
-	$".".linear_velocity.x = ($".".linear_velocity.x * (1 - alteration_percent)) + (xz_change_boost[0] * alteration_percent)
-	$".".linear_velocity.z = ($".".linear_velocity.z * (1 - alteration_percent)) + (xz_change_boost[1] * alteration_percent)
+	$".".linear_velocity.x = dlib.blend_linear(xz_change_boost[0], $".".linear_velocity.x, alteration_percent)
+	$".".linear_velocity.z = dlib.blend_linear(xz_change_boost[1], $".".linear_velocity.z, alteration_percent)
 
 	# Raw force addition
 	var new_angular_x = -1 * xz_change[1]
 	var new_angular_z = xz_change[0]
 	# Accounting for pivot boosting
 	if !BRAKING:
-		$".".angular_velocity.x = ($".".angular_velocity.x * (1 - alteration_percent)) + (new_angular_x * alteration_percent)
-		$".".angular_velocity.z = ($".".angular_velocity.z * (1 - alteration_percent)) + (new_angular_z * alteration_percent)
+		$".".angular_velocity.x = dlib.blend_linear(new_angular_x, $".".angular_velocity.x, alteration_percent)
+		$".".angular_velocity.y = 0
+		$".".angular_velocity.z = dlib.blend_linear(new_angular_z, $".".angular_velocity.z, alteration_percent)
 	
 	cap_speed()
 
