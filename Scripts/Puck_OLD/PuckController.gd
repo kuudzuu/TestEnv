@@ -8,7 +8,7 @@ and allows parts of the player to speak to one another
 ## GLOBALS =========================================================================================
 ## Libraries
 var dlib = preload("res://Scripts/Utility/dlib.gd").new()
-var disclib = preload("res://Scripts/Puck/Disc/disclib.gd").new()
+var ballib = preload("res://Scripts/Puck/Ball/ballib.gd").new()
 
 ## Movement Modes
 enum MOVEMENT_MODE_ENUM {DIRECT, SLING}
@@ -21,7 +21,7 @@ enum VIEWING_MODE_ENUM {ORBIT, EXTEND, FOLLOW}
 var VIEWING_MODE: VIEWING_MODE_ENUM
 
 ## Children
-@onready var DISC = $Disc
+@onready var BALL = $Ball
 @onready var CAMERA = $Camera3D
 @onready var VIEWPORT = get_viewport()
 
@@ -49,11 +49,11 @@ func _input(event):
 func handle_movement_input():
 	if MOVEMENT_MODE == MOVEMENT_MODE_ENUM.DIRECT:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-			var added_force = disclib.input_to_direct_force(VIEWPORT.get_mouse_position(), CAMERA.rotation.y)
+			var added_force = ballib.input_to_direct_force(VIEWPORT.get_mouse_position(), CAMERA.rotation.y)
 			if added_force:
-				DISC.apply_force(added_force)
+				BALL.apply_force(added_force)
 		elif Input.is_action_just_released("right_click"): # added "right_click" to Godot input map
-			disclib.stop_movement_input()
+			ballib.stop_movement_input()
 	else: # it's sling lol
 		pass
 
@@ -79,13 +79,13 @@ func handle_ui_input(event):
 
 func handle_breaking():
 	if Input.is_action_pressed("ui_break"): # 'shift' added to new ui action "ui_break"
-		DISC.break_ball()
+		BALL.break_ball()
 	if Input.is_action_just_released("ui_break"):
-		DISC.stop_braking()
+		BALL.stop_braking()
 
 ## Resets puck
 func reset_puck():
-	DISC.reset_disc()
+	BALL.reset_ball()
 	CAMERA.reset_camera()
 
 ## =================================================================================================

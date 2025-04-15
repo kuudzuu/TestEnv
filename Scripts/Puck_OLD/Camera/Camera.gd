@@ -125,7 +125,7 @@ func center_camera():
 	HEIGHT = DEFAULT_HEIGHT
 	#GRADE = $".".rotation.y
 	
-	var velocity_angle = dlib.xy_to_vector([$"../Disc".linear_velocity.x, $"../Disc".linear_velocity.z])
+	var velocity_angle = dlib.xy_to_vector([$"../Ball".linear_velocity.x, $"../Ball".linear_velocity.z])
 	OFFSET_POSITION = dlib.vector_to_xy([velocity_angle[0] + deg_to_rad(180), DISTANCE])
 	
 	apply_offset()
@@ -133,9 +133,9 @@ func center_camera():
 
 ## Sets camera position by setting cam position to ball position + offset position
 func apply_offset():
-	$".".position.x = $"../Disc".position.x + OFFSET_POSITION[0]
-	$".".position.y = $"../Disc".position.y + HEIGHT
-	$".".position.z = $"../Disc".position.z + OFFSET_POSITION[1]
+	$".".position.x = $"../Ball".position.x + OFFSET_POSITION[0]
+	$".".position.y = $"../Ball".position.y + HEIGHT
+	$".".position.z = $"../Ball".position.z + OFFSET_POSITION[1]
 
 ## Sets rotation of camera to face ball
 func face_ball():
@@ -144,7 +144,7 @@ func face_ball():
 
 ## Returns current rotation change needed to look directly at ball
 func get_rotation_to_ball():
-	var angle = dlib.xy_to_angle([$".".position.x - $"../Disc".position.x, $".".position.z - $"../Disc".position.z])
+	var angle = dlib.xy_to_angle([$".".position.x - $"../Ball".position.x, $".".position.z - $"../Ball".position.z])
 	return angle - $".".rotation.y
 
 ## Updates POSITION variable
@@ -152,7 +152,7 @@ func set_position(new_position):
 	$".".position.x = new_position[0]
 	$".".position.y = HEIGHT
 	$".".position.z = new_position[1]
-	OFFSET_POSITION = [$".".position.x - $"../Disc".position.x, $".".position.z - $"../Disc".position.z]
+	OFFSET_POSITION = [$".".position.x - $"../Ball".position.x, $".".position.z - $"../Ball".position.z]
 
 ## Sets ANGLE globals
 func set_horizontal_rotation(new_rotation):

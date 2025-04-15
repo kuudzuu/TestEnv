@@ -25,7 +25,7 @@ func _ready():
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$".".position = $"../Disc".position
+	$".".position = $"../Ball".position
 	var facing_angle = get_firing_angle() - deg_to_rad(180)
 	set_facing(facing_angle)
 	if (PROJECTILE_CLICK_POSITION != get_viewport().get_mouse_position() and AIMING):

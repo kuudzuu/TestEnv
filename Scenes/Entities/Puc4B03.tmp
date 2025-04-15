@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bv1bgtipqc16y"]
 
-[ext_resource type="Script" path="res://Scripts/Puck/PuckController.gd" id="1_ym5cp"]
+[ext_resource type="Script" path="res://Scripts/Puck/PuckController_OLD.gd" id="1_c3eb5"]
 [ext_resource type="Script" path="res://Scripts/Puck/Camera/Camera.gd" id="2_rokli"]
 [ext_resource type="Script" path="res://Scripts/Puck/Abilities/Ring.gd" id="3_pi3jm"]
-[ext_resource type="Script" path="res://Scripts/Puck/Disc/Disc.gd" id="4_3q4l7"]
+[ext_resource type="Script" path="res://Scripts/Puck/Ball/Ball.gd" id="4_i3mi0"]
 [ext_resource type="Texture2D" uid="uid://bdliy02typurn" path="res://Textures/IMG_0499.png" id="5_so1gb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h6lu"]
@@ -20,7 +20,7 @@ radius = 1.5
 albedo_texture = ExtResource("5_so1gb")
 
 [node name="Puck" type="Node3D"]
-script = ExtResource("1_ym5cp")
+script = ExtResource("1_c3eb5")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 9.24047, 10.1172)
@@ -44,7 +44,7 @@ radius = 0.05
 
 [node name="Disc" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("4_3q4l7")
+script = ExtResource("4_i3mi0")
 GRAVITY_MULT = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Disc"]
