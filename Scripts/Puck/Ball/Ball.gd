@@ -27,6 +27,7 @@ var BRAKING = false
 func _ready():
 	initialize_ball_params()
 	reset_ball()
+	cap_angular()
 	$"../Projectile Ring".visible = false
 
 
@@ -35,6 +36,8 @@ func _ready():
 ## Initializes this puck's specific values for all global puck parameters
 func initialize_ball_params():
 	$".".gravity_scale = GRAVITY_MULT
+
+#func apply_force_attractor(force_vector)
 
 ## Takes in a single-frame user force and applies it to Ball
 ## User force is in (angle, magnitude) format.
@@ -60,7 +63,7 @@ func apply_force_linear(force_vector):
 		$".".angular_velocity.z = ($".".angular_velocity.z * (1 - alteration_percent)) + (new_angular_z * alteration_percent)
 	
 	cap_speed()
-	#cap_angular()
+
 
 ## UTILITY ---------------------------------------------------------------------
 

@@ -11,6 +11,8 @@ var dlib = preload("res://Scripts/Utility/dlib.gd").new()
 var ballib = preload("res://Scripts/Puck/Ball/ballib.gd").new()
 
 ## Movement Modes
+enum MOVEMENT_MODE_ENUM {DIRECT, SLING}
+var MOVEMENT_MODE: MOVEMENT_MODE_ENUM
 
 ## ORBIT: Rotates around puck, facing puck
 ## EXTEND: Rotates in place, and moves across map towards cursor
@@ -45,12 +47,15 @@ func _input(event):
 ## BULK ------------------------------------------------------------------------
 
 func handle_movement_input():
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		var added_force = ballib.input_to_movement(VIEWPORT.get_mouse_position(), CAMERA.rotation.y)
-		if added_force:
-			BALL.apply_force_linear(added_force)
-	elif Input.is_action_just_released("right_click"): # added "right_click" to Godot input map
-		ballib.stop_movement_input()
+	if MOVEMENT_MODE == MOVEMENT_MODE_ENUM.DIRECT:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			var added_force = ballib.input_to_movement(VIEWPORT.get_mouse_position(), CAMERA.rotation.y)
+			if added_force:
+				BALL.apply_force_linear(added_force)
+		elif Input.is_action_just_released("right_click"): # added "right_click" to Godot input map
+			ballib.stop_movement_input()
+	else: # it's sling lol
+		pass
 
 ## bro trust
 func handle_camera_input():
