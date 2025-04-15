@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bv1bgtipqc16y"]
+[gd_scene load_steps=11 format=3 uid="uid://bv1bgtipqc16y"]
 
 [ext_resource type="Script" uid="uid://br6v8ktmyod2j" path="res://Scripts/Puck/PuckController.gd" id="1_ym5cp"]
 [ext_resource type="Script" uid="uid://dcmf1p4cjp1ye" path="res://Scripts/Puck/Camera/Camera.gd" id="2_rokli"]
@@ -11,6 +11,12 @@ friction = 0.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v8ywr"]
 height = 1.0
 radius = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rjjs0"]
+size = Vector3(3.6, 1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5nf7"]
+size = Vector3(3, 1, 2.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hofl5"]
 albedo_texture = ExtResource("5_so1gb")
@@ -32,14 +38,41 @@ physics_material_override = SubResource("PhysicsMaterial_qsdix")
 script = ExtResource("4_3q4l7")
 GRAVITY_MULT = 12
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Disc"]
+[node name="CylinderCollision" type="CollisionShape3D" parent="Disc"]
 shape = SubResource("CylinderShape3D_v8ywr")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Disc/CollisionShape3D"]
-light_color = Color(0.447059, 1, 1, 1)
-omni_range = 10.65
+[node name="BoxCollision1" type="CollisionShape3D" parent="Disc"]
+shape = SubResource("BoxShape3D_rjjs0")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Disc/CollisionShape3D"]
+[node name="BoxCollision2" type="CollisionShape3D" parent="Disc"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+shape = SubResource("BoxShape3D_rjjs0")
+
+[node name="BoxCollision3" type="CollisionShape3D" parent="Disc"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_rjjs0")
+
+[node name="BoxCollision4" type="CollisionShape3D" parent="Disc"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
+shape = SubResource("BoxShape3D_rjjs0")
+
+[node name="BoxCollision5" type="CollisionShape3D" parent="Disc"]
+transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0, 0, 0)
+shape = SubResource("BoxShape3D_a5nf7")
+
+[node name="BoxCollision6" type="CollisionShape3D" parent="Disc"]
+transform = Transform3D(0.382683, 0, -0.923879, 0, 1, 0, 0.923879, 0, 0.382683, 0, 0, 0)
+shape = SubResource("BoxShape3D_a5nf7")
+
+[node name="BoxCollision7" type="CollisionShape3D" parent="Disc"]
+transform = Transform3D(-0.382683, 0, -0.92388, 0, 1, 0, 0.92388, 0, -0.382683, 0, 0, 0)
+shape = SubResource("BoxShape3D_a5nf7")
+
+[node name="BoxCollision8" type="CollisionShape3D" parent="Disc"]
+transform = Transform3D(-0.923879, 0, -0.382683, 0, 1, 0, 0.382683, 0, -0.923879, 0, 0, 0)
+shape = SubResource("BoxShape3D_a5nf7")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Disc"]
 radius = 2.0
 height = 1.0
 sides = 24
@@ -50,3 +83,7 @@ material = SubResource("StandardMaterial3D_hofl5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Disc/Area3D"]
 shape = SubResource("CylinderShape3D_vxwyn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Disc"]
+light_color = Color(0.447059, 1, 1, 1)
+omni_range = 10.65
