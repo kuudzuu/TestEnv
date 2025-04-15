@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://calodvgwwykfb"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.gd" id="1_ay3hq"]
+[ext_resource type="Script" uid="uid://bl5hwcmlg2qog" path="res://Scripts/Projectiles/Bullet.gd" id="1_ay3hq"]
 [ext_resource type="Texture2D" uid="uid://dx5xlq4jyyf7p" path="res://Textures/image - Copy.png" id="2_tlwdr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p2ek1"]

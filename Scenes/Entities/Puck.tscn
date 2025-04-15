@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bv1bgtipqc16y"]
 
-[ext_resource type="Script" path="res://Scripts/Puck/PuckController.gd" id="1_ym5cp"]
-[ext_resource type="Script" path="res://Scripts/Puck/Camera/Camera.gd" id="2_rokli"]
-[ext_resource type="Script" path="res://Scripts/Puck/Disc/Disc.gd" id="4_3q4l7"]
+[ext_resource type="Script" uid="uid://br6v8ktmyod2j" path="res://Scripts/Puck/PuckController.gd" id="1_ym5cp"]
+[ext_resource type="Script" uid="uid://dcmf1p4cjp1ye" path="res://Scripts/Puck/Camera/Camera.gd" id="2_rokli"]
+[ext_resource type="Script" uid="uid://dl3uhwr0l7h2p" path="res://Scripts/Puck/Disc/Disc.gd" id="4_3q4l7"]
 [ext_resource type="Texture2D" uid="uid://bdliy02typurn" path="res://Textures/IMG_0499.png" id="5_so1gb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qsdix"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=3 uid="uid://dap56umf1e6s0"]
 
 [ext_resource type="Texture2D" uid="uid://ch37522twyn3n" path="res://Textures/B4F70D2B-A964-42E3-A37A-BAC6613ADCC0.png" id="1_rlbvy"]
-[ext_resource type="Script" path="res://Scripts/Terrain/Arena.gd" id="1_uxajb"]
+[ext_resource type="Script" uid="uid://ckvmapbxe4enc" path="res://Scripts/Terrain/Arena.gd" id="1_uxajb"]
 [ext_resource type="Texture2D" uid="uid://c4rf0ftsw7fka" path="res://Textures/IMG_1268.png" id="2_hw0xa"]
-[ext_resource type="Script" path="res://Scripts/Terrain/KillFloor.gd" id="3_f2d7y"]
+[ext_resource type="Script" uid="uid://bklw48rei8jl5" path="res://Scripts/Terrain/KillFloor.gd" id="3_f2d7y"]
 [ext_resource type="Texture2D" uid="uid://ctldrymdl8cfb" path="res://Textures/Screenshot 2025-01-07 182717.png" id="4_tp7d1"]
 [ext_resource type="Texture2D" uid="uid://6031kcakrtrg" path="res://Textures/BoxinSky - Copy.png" id="5_qj3w0"]
 [ext_resource type="Texture2D" uid="uid://do2ye7anxs31n" path="res://Textures/enclosedDSC00656.png" id="5_wdc1u"]

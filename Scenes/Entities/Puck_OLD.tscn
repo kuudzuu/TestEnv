@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://ckcx0fn21bu0a"]
 
-[ext_resource type="Script" path="res://Scripts/Puck/PuckController.gd" id="1_kok8g"]
-[ext_resource type="Script" path="res://Scripts/Puck/Camera/Camera.gd" id="2_um8u1"]
-[ext_resource type="Script" path="res://Scripts/Puck/Abilities/Ring.gd" id="3_tfhai"]
-[ext_resource type="Script" path="res://Scripts/Puck_OLD/Ball/Ball.gd" id="4_rw6bs"]
+[ext_resource type="Script" uid="uid://br6v8ktmyod2j" path="res://Scripts/Puck/PuckController.gd" id="1_kok8g"]
+[ext_resource type="Script" uid="uid://dcmf1p4cjp1ye" path="res://Scripts/Puck/Camera/Camera.gd" id="2_um8u1"]
+[ext_resource type="Script" uid="uid://cwacjr7nd3me1" path="res://Scripts/Puck/Abilities/Ring.gd" id="3_tfhai"]
+[ext_resource type="Script" uid="uid://nbggvmtvhp1l" path="res://Scripts/Puck_OLD/Ball/Ball.gd" id="4_rw6bs"]
 [ext_resource type="Texture2D" uid="uid://bdliy02typurn" path="res://Textures/IMG_0499.png" id="5_k686u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h6lu"]
