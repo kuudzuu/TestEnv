@@ -4,31 +4,24 @@ extends Node
 ## Libraries
 var dlib = preload("res://Scripts/Utility/dlib.gd").new()
 
-## Camera Movement Mode
-enum CAMERA_MODE_ENUM {SURROUND, SPRINT, LEASHED}
-## SURROUND: Rotates around puck, facing puck ///
-## SPRINT: Rotates in place, and moves across map towards cursor ///
-## FLOAT: Fixed at continuous xz offset from puck, rotates in place ///
-## LEASHED: Attached "behind" puck "looking forwards" (velocity determines direction) ///
-var CAMERA_MODE: CAMERA_MODE_ENUM
+## References
+@onready var DISC = $"../Disc"
+
+## Camera positioning parameters
+var FOCUS_POINT: Vector3
+var FOCUS_OFFSET: Vector3
+
+var ORBIT_SPHERE_RADIUS: float
+var ORBIT_HEIGHT: float
+
+var HORZ_ORBIT: float
+var VERT_ORBIT: float
+var HORZ_SWIVEL: float
+var VERT_SWIVEL: float
 
 ## Defaults
-var DEFAULT_DISTANCE = 10
-var DEFAULT_HEIGHT = 35
-var DEFAULT_GRADE = deg_to_rad(-70)
-
-## Camera Movement Tracking
-var DISTANCE = DEFAULT_DISTANCE
-var MIN_DISTANCE = 7.5
-var MAX_DISTANCE = 17.5
-var HEIGHT = DEFAULT_HEIGHT
-var GRADE = DEFAULT_GRADE
-var OFFSET_POSITION = []
-
-## Camera Movement Parameters
-var ANGLE_CHANGE = deg_to_rad(2.5)
-var SPRINT_SPEED = 0.15
-var UNLIMITED_OFFSET = true
+var DEFAULT_ORBIT_SPHERE_RADIUS = 40.0
+var DEFAULT_ORBIT_HEIGHT = 35.0
 
 ## FUNCTIONS =======================================================================================
 ## PREMADE ---------------------------------------------------------------------
@@ -36,137 +29,87 @@ var UNLIMITED_OFFSET = true
 ## Called when the node enters the scene tree for the first time.
 func _ready():
 	reset_camera()
-	pass
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if CAMERA_MODE == CAMERA_MODE_ENUM.SURROUND:
-		apply_offset()
-		pass
-	if CAMERA_MODE == CAMERA_MODE_ENUM.LEASHED:
-		center_camera()
-	if CAMERA_MODE == CAMERA_MODE_ENUM.SPRINT:
-		sprint(delta)
-
-## Called when user input is detected. 'event' is said user input.
-func _input(event):
-	pass
+	FOCUS_POINT = DISC.position
+	update_position()
+	update_rotation()
 
 ## BULK ------------------------------------------------------------------------
 
-## Sets the CAMERA_MODE based on paret's MOVEMENT_MODE
-func set_camera_mode(VIEWING_MODE):
-	if VIEWING_MODE == $"..".VIEWING_MODE_ENUM.ORBIT:
-		CAMERA_MODE = CAMERA_MODE_ENUM.SURROUND
-	if VIEWING_MODE == $"..".VIEWING_MODE_ENUM.FOLLOW:
-		#CAMERA_MODE = CAMERA_MODE_ENUM.LEASHED
-		center_camera()
-	if VIEWING_MODE == $"..".VIEWING_MODE_ENUM.EXTEND:
-		CAMERA_MODE = CAMERA_MODE_ENUM.SPRINT
-
-## Rotates the camera horizontally, according to CAMERA_MODE
-func rotate_horizontal(left):
-	if CAMERA_MODE == CAMERA_MODE_ENUM.LEASHED:
-		CAMERA_MODE = CAMERA_MODE_ENUM.SURROUND
-	
-	var adjusted_angle_change = ANGLE_CHANGE * (1 if left else -1)
-	if CAMERA_MODE == CAMERA_MODE_ENUM.SURROUND:
-		rotate_around_ball(adjusted_angle_change)
-	else:
-		swivel_by(adjusted_angle_change)
-
-## Rotates the camera vertically
-func rotate_vertical(up):
-	if CAMERA_MODE == CAMERA_MODE_ENUM.LEASHED:
-		CAMERA_MODE = CAMERA_MODE_ENUM.SURROUND
-	
-	$".".rotation.x += (1 if up else -1) * ANGLE_CHANGE * 0.5
-	
-	if $".".rotation.x > deg_to_rad(-20):
-		$".".rotation.x = deg_to_rad(-20)
-	elif $".".rotation.x < deg_to_rad(-65):
-		$".".rotation.x = deg_to_rad(-65)
-	pass
-
-## "Sprints" the camera toward the cursor
-func sprint(delta):
-	# Get direction to move camera
-	var cursor_position = get_viewport().get_mouse_position()
-	var screensize = get_viewport().size
-	
-	var expand = true
-	if cursor_position[1]/screensize[1] < 0.1:
-		expand = false
-	
-	DISTANCE += SPRINT_SPEED * (1 if expand else -1)
-	DISTANCE = MIN_DISTANCE if DISTANCE < MIN_DISTANCE else (MAX_DISTANCE if DISTANCE > MAX_DISTANCE else DISTANCE)
-	var new_position = dlib.vector_to_xy([$".".rotation.y, DISTANCE])
-	OFFSET_POSITION = new_position
-	apply_offset()
-
-## UTILITY ---------------------------------------------------------------------
-
 ## Sets camera to default position and rotation
 func reset_camera():
-	CAMERA_MODE = CAMERA_MODE_ENUM.SURROUND
-	DISTANCE = DEFAULT_DISTANCE
-	OFFSET_POSITION = dlib.vector_to_xy([deg_to_rad(0), DISTANCE])
-	HEIGHT = DEFAULT_HEIGHT
-	GRADE = DEFAULT_GRADE
+	ORBIT_SPHERE_RADIUS = DEFAULT_ORBIT_SPHERE_RADIUS
+	ORBIT_HEIGHT = DEFAULT_ORBIT_HEIGHT
+	HORZ_ORBIT = 0
+	VERT_ORBIT = 0
+
+## Sets camera position to be specified offset from ball
+func update_position():
+	var current_radius = get_radius_by_height()
+	var xz_offset = dlib.vector_to_xy([HORZ_ORBIT, current_radius])
 	
-	apply_offset()
-	face_ball()
-	$".".rotation.x = GRADE
+	$".".position.x = FOCUS_POINT[0] + xz_offset[0]
+	$".".position.y = FOCUS_POINT[1] + ORBIT_HEIGHT
+	$".".position.z = FOCUS_POINT[2] + xz_offset[1]
 
-## Recenters camera on ball
-func center_camera():
-	# TODO: Make smooth
-	DISTANCE = DEFAULT_DISTANCE
-	HEIGHT = DEFAULT_HEIGHT
-	#GRADE = $".".rotation.y
-	
-	var velocity_angle = dlib.xy_to_vector([$"../Disc".linear_velocity.x, $"../Disc".linear_velocity.z])
-	OFFSET_POSITION = dlib.vector_to_xy([velocity_angle[0] + deg_to_rad(180), DISTANCE])
-	
-	apply_offset()
-	face_ball()
+func update_rotation():
+	look_at_orbit_center()
 
-## Sets camera position by setting cam position to ball position + offset position
-func apply_offset():
-	$".".position.x = $"../Disc".position.x + OFFSET_POSITION[0]
-	$".".position.y = $"../Disc".position.y + HEIGHT
-	$".".position.z = $"../Disc".position.z + OFFSET_POSITION[1]
+## MODULAR ---------------------------------------------------------------------
 
-## Sets rotation of camera to face ball
-func face_ball():
-	var new_angle = get_rotation_to_ball()
-	swivel_by(new_angle)
+## Sets camera rotation to look at center of orbit
+func look_at_orbit_center():
+	$".".look_at(DISC.position)
 
-## Returns current rotation change needed to look directly at ball
-func get_rotation_to_ball():
-	var angle = dlib.xy_to_angle([$".".position.x - $"../Disc".position.x, $".".position.z - $"../Disc".position.z])
-	return angle - $".".rotation.y
+## Changes it's horizontal orbit position by the provided angle
+## Keeps height and sphere radius the same
+func orbit_horz(angle):
+	pass
 
-## Updates POSITION variable
-func set_position(new_position):
-	$".".position.x = new_position[0]
-	$".".position.y = HEIGHT
-	$".".position.z = new_position[1]
-	OFFSET_POSITION = [$".".position.x - $"../Disc".position.x, $".".position.z - $"../Disc".position.z]
+## Overrides horizontal orbit position with the provided angle
+## Keeps height and sphere radius the same
+func set_orbit_horz(angle):
+	pass
 
-## Sets ANGLE globals
-func set_horizontal_rotation(new_rotation):
-	$".".rotation.y = new_rotation
+## Changes it's vertical orbit position by the provided angle
+## Keeps height and sphere radius the same
+func orbit_vert(angle):
+	pass
 
-## Alters position and rotation of camera to raim in orbit facing ballm 
-func rotate_around_ball(rotation_change):
-	swivel_by(rotation_change)
-	var new_position = dlib.vector_to_xy([$".".rotation.y, DISTANCE])
-	OFFSET_POSITION = new_position
-	apply_offset()
+## Overrides vertical orbit position with the provided angle
+## Keeps height and sphere radius the same
+func set_orbit_vert(angle):
+	pass
 
-## Alters ANGLE globals
-func swivel_by(rotation_change):
-	$".".rotation.y += rotation_change
+## Moves camera closer or further from ball
+## Effectively enlarging orbit sphere radius
+func zoom(distance):
+	pass
 
+## Sets camera to certain distance from ball
+## Overwrites orbit sphere radius
+func set_zoom(distance):
+	pass
+
+func swivel_horz(angle):
+	pass
+
+func set_swivel_horz(angle):
+	pass
+
+func swivel_vert(angle):
+	pass
+
+func set_swivel_vert(angle):
+	pass
+
+## SELF LIB --------------------------------------------------------------------
+
+## Returns the radius of the cross section of the orbit sphere we are in based on height
+func get_radius_by_height():
+	return sqrt(pow(ORBIT_SPHERE_RADIUS, 2) - pow(abs(ORBIT_HEIGHT), 2))
+
+## -----------------------------------------------------------------------------
 ## =================================================================================================
