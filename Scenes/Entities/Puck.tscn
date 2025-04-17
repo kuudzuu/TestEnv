@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://br6v8ktmyod2j" path="res://Scripts/Puck/PuckController.gd" id="1_ym5cp"]
 [ext_resource type="Script" uid="uid://dcmf1p4cjp1ye" path="res://Scripts/Puck/Camera/Camera.gd" id="2_rokli"]
 [ext_resource type="Script" uid="uid://dl3uhwr0l7h2p" path="res://Scripts/Puck/Disc/Disc.gd" id="4_3q4l7"]
-[ext_resource type="Texture2D" uid="uid://bdliy02typurn" path="res://Textures/IMG_0499.png" id="5_so1gb"]
+[ext_resource type="Texture2D" uid="uid://mcxccmkd7uev" path="res://Textures/Arena2/palmrain.jpg" id="4_rjjs0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qsdix"]
 friction = 0.0
@@ -23,7 +23,7 @@ size = Vector3(3.6, 1, 1.5)
 size = Vector3(3, 1, 2.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hofl5"]
-albedo_texture = ExtResource("5_so1gb")
+albedo_texture = ExtResource("4_rjjs0")
 
 [node name="Puck" type="Node3D"]
 script = ExtResource("1_ym5cp")

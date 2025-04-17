@@ -1,0 +1,388 @@
+[gd_scene load_steps=28 format=3 uid="uid://dbxebh6shuqgq"]
+
+[ext_resource type="Texture2D" uid="uid://d3yrhq6dwxj3u" path="res://Textures/Arena2/duvet.png" id="1_6kf48"]
+[ext_resource type="Texture2D" uid="uid://dx5xlq4jyyf7p" path="res://Textures/image - Copy.png" id="1_8x3ov"]
+[ext_resource type="Texture2D" uid="uid://do2ye7anxs31n" path="res://Textures/enclosedDSC00656.png" id="3_k502l"]
+[ext_resource type="Texture2D" uid="uid://b4f6wfet1rd6o" path="res://Textures/Arena2/IMG_1229.png" id="4_vobu7"]
+[ext_resource type="Texture2D" uid="uid://b2k6576vwnt5o" path="res://Textures/Arena2/IMG_1273.PNG" id="5_vobu7"]
+[ext_resource type="Texture2D" uid="uid://5xiinhrxss8x" path="res://Textures/Arena2/IMG_1120 - Copy.PNG" id="5_wrhh2"]
+[ext_resource type="Texture2D" uid="uid://b6vf1j2duhpwc" path="res://Textures/Arena2/IMG_1913.png" id="7_aw7sc"]
+[ext_resource type="Texture2D" uid="uid://cbphb46deey8f" path="res://Textures/Arena2/howwalleseesthenightsky.PNG" id="7_ldwbp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fey5c"]
+albedo_texture = ExtResource("1_8x3ov")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3j055"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8x3ov"]
+panorama = ExtResource("1_6kf48")
+energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_fey5c"]
+sky_material = SubResource("PanoramaSkyMaterial_8x3ov")
+
+[sub_resource type="Environment" id="Environment_k502l"]
+background_mode = 2
+sky = SubResource("Sky_fey5c")
+ambient_light_source = 2
+ambient_light_color = Color(0.87451, 0.898039, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k502l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vobu7"]
+albedo_color = Color(1, 0.36, 0.797333, 1)
+albedo_texture = ExtResource("3_k502l")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrhh2"]
+albedo_texture = ExtResource("4_vobu7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw7sc"]
+albedo_texture = ExtResource("5_vobu7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbojl"]
+albedo_texture = ExtResource("5_vobu7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_717d4"]
+albedo_color = Color(1, 0.33, 0.6315, 1)
+albedo_texture = ExtResource("5_wrhh2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqgj0"]
+albedo_color = Color(0.916667, 0, 1, 1)
+albedo_texture = ExtResource("7_ldwbp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7xqy"]
+albedo_color = Color(1, 0.32, 0.558, 1)
+albedo_texture = ExtResource("7_aw7sc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aw7sc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aw7sc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ldwbp"]
+friction = 0.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_717d4"]
+height = 1.0
+radius = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbojl"]
+size = Vector3(3.6, 1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c7xqy"]
+size = Vector3(3, 1, 2.5)
+
+[node name="Arena2" type="Node3D"]
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(275, 0, 0, 0, 25, 0, 0, 0, 5, -19.7893, 4.61509, -48.4732)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/StaticBody3D2"]
+material = SubResource("StandardMaterial3D_fey5c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D2"]
+shape = SubResource("BoxShape3D_3j055")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(275, 0, 0, 0, 5, 0, 0, 0, 5, -19.7893, 2.5697, 47.5653)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/StaticBody3D3"]
+material = SubResource("StandardMaterial3D_fey5c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D3"]
+shape = SubResource("BoxShape3D_3j055")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 100, -154.681, 2.49814, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/StaticBody3D4"]
+material = SubResource("StandardMaterial3D_fey5c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D4"]
+shape = SubResource("BoxShape3D_3j055")
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(275, 0, 0, 0, 3, 0, 0, 0, 100, -19.597, -0.75, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor/StaticBody3D"]
+material = SubResource("StandardMaterial3D_fey5c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_3j055")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_k502l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 264.055, 206.07, -180.71)
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="Sphere" type="StaticBody3D" parent="Obstacles"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -121.21, -39.976, 5.81647)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Sphere"]
+shape = SubResource("SphereShape3D_k502l")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Obstacles/Sphere"]
+radial_segments = 32
+rings = 24
+material = SubResource("StandardMaterial3D_vobu7")
+
+[node name="Slopes" type="Node3D" parent="Obstacles"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstacles/Slopes"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 2.5, -78.1874, -3.02, 27.7752)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Slopes/StaticBody3D"]
+polygon = PackedVector2Array(1, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Slopes/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.493363, -0.0812647, -0.00445199)
+use_collision = true
+polygon = PackedVector2Array(-2.06889, 0.433862, 0.0399308, 1.94827, 2.11729, 0.396716)
+depth = 20.0
+material = SubResource("StandardMaterial3D_wrhh2")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Obstacles/Slopes"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 2.5, -42.3664, -1.59785, 27.9765)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Slopes/StaticBody3D2"]
+polygon = PackedVector2Array(1, 1)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Slopes/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.493363, -0.0812647, -0.00445199)
+use_collision = true
+polygon = PackedVector2Array(-2.06889, 0.433862, -0.0124174, 0.85954, 2.11729, 0.396716)
+depth = 20.0
+material = SubResource("StandardMaterial3D_wrhh2")
+
+[node name="Cliff" type="Node3D" parent="Obstacles"]
+
+[node name="Ramp2" type="StaticBody3D" parent="Obstacles/Cliff"]
+transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 8.09691, -0.134284, -18.7327)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Cliff/Ramp2"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0.0580704, 0)
+use_collision = true
+polygon = PackedVector2Array(-1.94193, 0.000422955, 0.992955, 1.06145, 1, 0)
+depth = 3.0
+material = SubResource("StandardMaterial3D_aw7sc")
+
+[node name="Ramp3" type="StaticBody3D" parent="Obstacles/Cliff"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 30.524, 5.11643, -23.7047)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Cliff/Ramp3"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0.0580704, 0)
+use_collision = true
+polygon = PackedVector2Array(-1.94193, 0.000422955, 0.992955, 1.06145, 1, 0)
+depth = 2.0
+material = SubResource("StandardMaterial3D_aw7sc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstacles/Cliff"]
+transform = Transform3D(60, 0, 0, 0, 5, 0, 0, 0, 10, 23.0398, 2.93377, -28.7308)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Cliff/StaticBody3D"]
+use_collision = true
+material = SubResource("StandardMaterial3D_fbojl")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Obstacles/Cliff"]
+transform = Transform3D(60, 0, 0, 0, 15, 0, 0, 0, 10, 23.0398, 2.93377, -38.2355)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Cliff/StaticBody3D3"]
+use_collision = true
+material = SubResource("StandardMaterial3D_fbojl")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Obstacles/Cliff"]
+transform = Transform3D(18, 0, 0, 0, 6, 0, 0, 0, 10, 44.5778, 7.63385, -28.5072)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Cliff/StaticBody3D2"]
+use_collision = true
+material = SubResource("StandardMaterial3D_fbojl")
+
+[node name="Ramps" type="Node3D" parent="Obstacles"]
+
+[node name="Ramp" type="StaticBody3D" parent="Obstacles/Ramps"]
+transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, 0.0692101, -0.23906, 23.3813)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Ramps/Ramp"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0.0580704, 0)
+use_collision = true
+polygon = PackedVector2Array(-1.94193, 0.000422955, 1, 1, 1, 0)
+depth = 3.0
+material = SubResource("StandardMaterial3D_717d4")
+
+[node name="Ramp3" type="StaticBody3D" parent="Obstacles/Ramps"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 23.3483, -0.23906, 15.3618)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Ramps/Ramp3"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0.0580704, 0)
+use_collision = true
+polygon = PackedVector2Array(-1.94193, 0.000422955, 1, 1, 1, 0)
+depth = 3.0
+material = SubResource("StandardMaterial3D_717d4")
+
+[node name="Halfpipe" type="Node3D" parent="Obstacles"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(9.95275, -0.29129, 0, 0.970965, 2.98582, 0, 0, 0, 50, 86.5314, -0.694798, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(9.84506, -0.526049, 0, 1.7535, 2.95352, 0, 0, 0, 50, 91.8114, -0.125707, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D2"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(9.65085, -0.785809, 0, 2.61937, 2.89525, 0, 0, 0, 50, 96.7438, 0.889042, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D3"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(9.27992, -1.1178, 0, 3.72599, 2.78398, 0, 0, 0, 50, 101.497, 2.36158, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D4"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(8.60511, -1.5283, 0, 5.09432, 2.58153, 0, 0, 0, 50, 106.199, 4.46683, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D5"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(7.46917, -1.99475, 0, 6.64917, 2.24075, 0, 0, 0, 50, 108.946, 6.28833, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D6"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(6.17352, -2.36006, 0, 7.86687, 1.85205, 0, 0, 0, 50, 110.628, 7.89097, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D7"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(5.12837, -2.57546, 0, 8.58486, 1.53851, 0, 0, 0, 50, 112.233, 9.96987, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D8"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(4.41631, -2.69159, 0, 8.97197, 1.32489, 0, 0, 0, 50, 113.582, 12.3136, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D9"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(3.30152, -2.83178, 0, 9.43928, 0.990455, 0, 0, 0, 50, 114.474, 14.5958, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D10"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(2.26465, -2.92206, 0, 9.7402, 0.679393, 0, 0, 0, 50, 115.418, 17.7863, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D11"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D12" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(1.32689, -2.97347, 0, 9.91158, 0.398066, 0, 0, 0, 50, 115.788, 19.4058, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D12"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="StaticBody3D13" type="StaticBody3D" parent="Obstacles/Halfpipe"]
+transform = Transform3D(-4.37114e-07, -3, 0, 10, -1.31134e-07, 0, 0, 0, 50, 116.361, 25.1861, -20.2729)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Halfpipe/StaticBody3D13"]
+use_collision = true
+material = SubResource("StandardMaterial3D_mqgj0")
+
+[node name="Rigids" type="Node3D" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Rigids"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 57.8337, 4.34487, 21.2874)
+gravity_scale = 5.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Rigids/RigidBody3D"]
+material = SubResource("StandardMaterial3D_c7xqy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigids/RigidBody3D"]
+shape = SubResource("BoxShape3D_aw7sc")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="Rigids"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 71.5404, 4.34487, 4.9044)
+gravity_scale = 5.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Rigids/RigidBody3D2"]
+material = SubResource("StandardMaterial3D_c7xqy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigids/RigidBody3D2"]
+shape = SubResource("SphereShape3D_aw7sc")
+
+[node name="Disc" type="RigidBody3D" parent="Rigids"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.4047, 1, 0)
+physics_material_override = SubResource("PhysicsMaterial_ldwbp")
+
+[node name="Coll_Cyldiner" type="CollisionShape3D" parent="Rigids/Disc"]
+shape = SubResource("CylinderShape3D_717d4")
+
+[node name="Coll_Box1" type="CollisionShape3D" parent="Rigids/Disc"]
+shape = SubResource("BoxShape3D_fbojl")
+
+[node name="Coll_Box2" type="CollisionShape3D" parent="Rigids/Disc"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+shape = SubResource("BoxShape3D_fbojl")
+
+[node name="Coll_Box3" type="CollisionShape3D" parent="Rigids/Disc"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_fbojl")
+
+[node name="Coll_Box4" type="CollisionShape3D" parent="Rigids/Disc"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
+shape = SubResource("BoxShape3D_fbojl")
+
+[node name="Coll_Box5" type="CollisionShape3D" parent="Rigids/Disc"]
+transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0, 0, 0)
+shape = SubResource("BoxShape3D_c7xqy")
+
+[node name="Coll_Box6" type="CollisionShape3D" parent="Rigids/Disc"]
+transform = Transform3D(0.382683, 0, -0.923879, 0, 1, 0, 0.923879, 0, 0.382683, 0, 0, 0)
+shape = SubResource("BoxShape3D_c7xqy")
+
+[node name="Coll_Box7" type="CollisionShape3D" parent="Rigids/Disc"]
+transform = Transform3D(-0.382683, 0, -0.92388, 0, 1, 0, 0.92388, 0, -0.382683, 0, 0, 0)
+shape = SubResource("BoxShape3D_c7xqy")
+
+[node name="Coll_Box8" type="CollisionShape3D" parent="Rigids/Disc"]
+transform = Transform3D(-0.923879, 0, -0.382683, 0, 1, 0, 0.382683, 0, -0.923879, 0, 0, 0)
+shape = SubResource("BoxShape3D_c7xqy")
+
+[node name="Texture" type="CSGCylinder3D" parent="Rigids/Disc"]
+radius = 2.0
+height = 1.0
+sides = 24
+smooth_faces = false
+material = SubResource("StandardMaterial3D_c7xqy")
