@@ -15,7 +15,7 @@ var disclib = preload("res://Scripts/Puck/Disc/disclib.gd").new()
 @export var GRAVITY_MULT: int
 @export var PUCK_MAX_SPEED = 70
 @export var PUCK_MAX_ANGULAR_SPEED = 1
-@export var BREAK_SPEED = 1.05
+@export var BREAK_SPEED = 1.075
 
 var BRAKING = false
 

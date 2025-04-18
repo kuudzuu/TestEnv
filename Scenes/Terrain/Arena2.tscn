@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dbxebh6shuqgq"]
+[gd_scene load_steps=32 format=3 uid="uid://dbxebh6shuqgq"]
 
 [ext_resource type="Texture2D" uid="uid://d3yrhq6dwxj3u" path="res://Textures/Arena2/duvet.png" id="1_6kf48"]
 [ext_resource type="Texture2D" uid="uid://dx5xlq4jyyf7p" path="res://Textures/image - Copy.png" id="1_8x3ov"]
@@ -9,7 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://b6vf1j2duhpwc" path="res://Textures/Arena2/IMG_1913.png" id="7_aw7sc"]
 [ext_resource type="Texture2D" uid="uid://cbphb46deey8f" path="res://Textures/Arena2/howwalleseesthenightsky.PNG" id="7_ldwbp"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_717d4"]
+bounce = 1.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fey5c"]
+albedo_color = Color(0.722667, 0.68, 1, 1)
 albedo_texture = ExtResource("1_8x3ov")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3j055"]
@@ -41,6 +45,12 @@ albedo_texture = ExtResource("5_vobu7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbojl"]
 albedo_texture = ExtResource("5_vobu7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_717d4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ldwbp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mqgj0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_717d4"]
 albedo_color = Color(1, 0.33, 0.6315, 1)
@@ -77,6 +87,7 @@ size = Vector3(3, 1, 2.5)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(275, 0, 0, 0, 25, 0, 0, 0, 5, -19.7893, 4.61509, -48.4732)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Walls/StaticBody3D2"]
 material = SubResource("StandardMaterial3D_fey5c")
@@ -86,6 +97,7 @@ shape = SubResource("BoxShape3D_3j055")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(275, 0, 0, 0, 5, 0, 0, 0, 5, -19.7893, 2.5697, 47.5653)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Walls/StaticBody3D3"]
 material = SubResource("StandardMaterial3D_fey5c")
@@ -95,6 +107,7 @@ shape = SubResource("BoxShape3D_3j055")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 100, -154.681, 2.49814, 0)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Walls/StaticBody3D4"]
 material = SubResource("StandardMaterial3D_fey5c")
@@ -166,6 +179,7 @@ material = SubResource("StandardMaterial3D_wrhh2")
 
 [node name="Ramp2" type="StaticBody3D" parent="Obstacles/Cliff"]
 transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 8.09691, -0.134284, -18.7327)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Cliff/Ramp2"]
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0.0580704, 0)
@@ -173,6 +187,11 @@ use_collision = true
 polygon = PackedVector2Array(-1.94193, 0.000422955, 0.992955, 1.06145, 1, 0)
 depth = 3.0
 material = SubResource("StandardMaterial3D_aw7sc")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Cliff/Ramp2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0288369, -1.5)
+depth = 3.0
+polygon = PackedVector2Array(-1.94193, 0.000422955, 0.992955, 1.06145, 1, 0)
 
 [node name="Ramp3" type="StaticBody3D" parent="Obstacles/Cliff"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 30.524, 5.11643, -23.7047)
@@ -186,29 +205,44 @@ material = SubResource("StandardMaterial3D_aw7sc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Obstacles/Cliff"]
 transform = Transform3D(60, 0, 0, 0, 5, 0, 0, 0, 10, 23.0398, 2.93377, -28.7308)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Cliff/StaticBody3D"]
 use_collision = true
 material = SubResource("StandardMaterial3D_fbojl")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Cliff/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0904455, 0)
+shape = SubResource("BoxShape3D_717d4")
+
 [node name="StaticBody3D3" type="StaticBody3D" parent="Obstacles/Cliff"]
 transform = Transform3D(60, 0, 0, 0, 15, 0, 0, 0, 10, 23.0398, 2.93377, -38.2355)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Cliff/StaticBody3D3"]
 use_collision = true
 material = SubResource("StandardMaterial3D_fbojl")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Cliff/StaticBody3D3"]
+shape = SubResource("BoxShape3D_ldwbp")
+
 [node name="StaticBody3D2" type="StaticBody3D" parent="Obstacles/Cliff"]
 transform = Transform3D(18, 0, 0, 0, 6, 0, 0, 0, 10, 44.5778, 7.63385, -28.5072)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/Cliff/StaticBody3D2"]
 use_collision = true
 material = SubResource("StandardMaterial3D_fbojl")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Cliff/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.107503, 0)
+shape = SubResource("BoxShape3D_mqgj0")
+
 [node name="Ramps" type="Node3D" parent="Obstacles"]
 
 [node name="Ramp" type="StaticBody3D" parent="Obstacles/Ramps"]
 transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, 0.0692101, -0.23906, 23.3813)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Ramps/Ramp"]
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0.0580704, 0)
@@ -217,8 +251,14 @@ polygon = PackedVector2Array(-1.94193, 0.000422955, 1, 1, 1, 0)
 depth = 3.0
 material = SubResource("StandardMaterial3D_717d4")
 
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Ramps/Ramp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0231546, -1.5)
+depth = 3.0
+polygon = PackedVector2Array(-1.94193, 0.000422955, 1, 1, 1, 0)
+
 [node name="Ramp3" type="StaticBody3D" parent="Obstacles/Ramps"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 23.3483, -0.23906, 15.3618)
+physics_material_override = SubResource("PhysicsMaterial_717d4")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Obstacles/Ramps/Ramp3"]
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0.0580704, 0)
@@ -226,6 +266,11 @@ use_collision = true
 polygon = PackedVector2Array(-1.94193, 0.000422955, 1, 1, 1, 0)
 depth = 3.0
 material = SubResource("StandardMaterial3D_717d4")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Obstacles/Ramps/Ramp3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0231546, -1.5)
+depth = 3.0
+polygon = PackedVector2Array(-1.94193, 0.000422955, 1, 1, 1, 0)
 
 [node name="Halfpipe" type="Node3D" parent="Obstacles"]
 
