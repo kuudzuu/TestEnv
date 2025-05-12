@@ -10,6 +10,8 @@ and allows parts of the player to speak to one another
 var dlib = preload("res://Scripts/Utility/dlib.gd").new()
 var disclib = preload("res://Scripts/Puck/Disc/disclib.gd").new()
 
+var GAME
+
 ## Movement Modes
 enum MOVEMENT_MODE_ENUM {HIT, DRIFT}
 var MOVEMENT_MODE: MOVEMENT_MODE_ENUM
@@ -34,6 +36,7 @@ var PREV_MOUSE_POS = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset_puck()
+	handle_ui_input(null)
 
 func _physics_process(delta):
 	handle_camera_input()
@@ -43,6 +46,9 @@ func _physics_process(delta):
 # Called on user input
 func _input(event):
 	handle_ui_input(event)
+
+func game_ref(game_ref):
+	GAME = game_ref
 
 ## BULK ------------------------------------------------------------------------
 
@@ -55,20 +61,12 @@ func handle_movement_input():
 ## bro trust
 func handle_camera_input():
 	pass
-	# NOTE: WASD was added to Project -> Project Settings -> Input Map -> ui_xyz
-	#if Input.is_action_pressed("ui_left"): # 'a' added to "ui_left"
-	#	CAMERA.rotate_horizontal(true)
-	#if Input.is_action_pressed("ui_right"): # 'd' added to "ui_right"
-	#	CAMERA.rotate_horizontal(false)
-	#if Input.is_action_pressed("ui_up"): # 'w' added to "ui_up"
-	#	CAMERA.rotate_vertical(true)
-	#if Input.is_action_pressed("ui_down"): # 's' added to "ui_down"
-	#	CAMERA.rotate_vertical(false)
-	# if space is pressed, recenter camera
 
 func handle_ui_input(event):
-	if event is InputEventKey and event.keycode == 82: #R
+	if event is InputEventKey and event.keycode == 82 and event.pressed == true: #R
 		reset_puck()
+	if event is InputEventKey and event.keycode == KEY_ESCAPE and event.pressed == true:
+		GAME.arena_exited()
 
 func handle_breaking():
 	if Input.is_action_pressed("ui_break"): # 'shift' added to new ui action "ui_break"

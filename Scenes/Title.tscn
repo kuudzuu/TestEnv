@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjjifuiiirjqj"]
+
+[ext_resource type="Script" uid="uid://dam40v6jvcew8" path="res://Scripts/Title/Title.gd" id="1_6khh7"]
+[ext_resource type="Texture2D" uid="uid://dslxqq1k87epj" path="res://Textures/Title/IMG_1975.png" id="1_tochr"]
+[ext_resource type="Texture2D" uid="uid://ci53fo5w8sien" path="res://Textures/Title/Clipboarder.2025.05.11.png" id="2_phf2g"]
+[ext_resource type="Texture2D" uid="uid://dyvlr3xmoehyc" path="res://Textures/Title/Clipboarder.2025.05.11-002.png" id="4_bwrlp"]
+[ext_resource type="Texture2D" uid="uid://dgu21aun04t1b" path="res://Textures/Title/Clipboarder.2025.05.11-004.png" id="5_71b5n"]
+[ext_resource type="Texture2D" uid="uid://badkhfrkgnu6v" path="res://Textures/Title/Clipboarder.2025.05.11-003.png" id="6_t32dt"]
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_6khh7")
+
+[node name="Img1975" type="Sprite2D" parent="."]
+position = Vector2(572, 333)
+scale = Vector2(0.446914, 0.446914)
+texture = ExtResource("1_tochr")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 646.0
+offset_top = 423.0
+offset_right = 993.0
+offset_bottom = 596.0
+texture_normal = ExtResource("2_phf2g")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_left = 124.0
+offset_top = 424.0
+offset_right = 473.0
+offset_bottom = 598.0
+texture_normal = ExtResource("4_bwrlp")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+offset_left = 137.0
+offset_top = 103.0
+offset_right = 486.0
+offset_bottom = 277.0
+texture_normal = ExtResource("5_71b5n")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton4" type="TextureButton" parent="."]
+offset_left = 638.0
+offset_top = 102.0
+offset_right = 987.0
+offset_bottom = 276.0
+texture_normal = ExtResource("6_t32dt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="TextureButton3" to="." method="_on_texture_button_3_pressed"]
+[connection signal="pressed" from="TextureButton4" to="." method="_on_texture_button_4_pressed"]

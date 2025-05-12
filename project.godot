@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="TEST"
-run/main_scene="res://Scenes/Master.tscn"
+run/main_scene="uid://b6l84hx56kdrl"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 
 [input]
 
