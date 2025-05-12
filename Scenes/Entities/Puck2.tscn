@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4rymjmetqwqf"]
+
+[ext_resource type="Script" uid="uid://wqman6o48cmu" path="res://Scripts/Puck2/Puck2Controller.gd" id="1_6or50"]
+[ext_resource type="Texture2D" uid="uid://b27jpgpqn5hft" path="res://Textures/Puck2/palmrain2.jpg" id="1_ym7cw"]
+[ext_resource type="Script" uid="uid://jx57eyi38sk4" path="res://Scripts/Puck2/Camera/Camera.gd" id="2_3mhht"]
+[ext_resource type="Script" uid="uid://b8cpj2ytfsjp2" path="res://Scripts/Puck2/Disc/Disc.gd" id="3_mbk8m"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0k3ns"]
+height = 1.0
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8foqu"]
+albedo_texture = ExtResource("1_ym7cw")
+
+[node name="Puck2" type="Node3D"]
+script = ExtResource("1_6or50")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.657283, 0.753644, 0, -0.753644, 0.657283, 0, 30.9445, 23.0226)
+script = ExtResource("2_3mhht")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("3_mbk8m")
+PUCK_MAX_SPEED = 700
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CylinderShape3D_0k3ns")
+
+[node name="Texture" type="CSGCylinder3D" parent="CharacterBody3D"]
+radius = 2.0
+height = 1.0
+sides = 24
+material = SubResource("StandardMaterial3D_8foqu")

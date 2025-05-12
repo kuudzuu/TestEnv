@@ -1,13 +1,14 @@
 extends Node
 
 ## Scenes
-@onready var ARENA_SCENE = preload("res://Scenes/Terrain/Arena2.tscn")
+@onready var ARENA_SCENE = preload("res://Scenes/Terrain/Arena4.tscn")
 @onready var PUCK_SCENE = preload("res://Scenes/Entities/Puck.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var Arena = ARENA_SCENE.instantiate()
 	var Puck = PUCK_SCENE.instantiate()
+	Puck.position.y += 1
 	add_child(Arena)
 	add_child(Puck)
 	

@@ -20,8 +20,8 @@ var HORZ_SWIVEL: float
 var VERT_SWIVEL: float
 
 ## Defaults
-var DEFAULT_ORBIT_SPHERE_RADIUS = 70.0
-var DEFAULT_ORBIT_HEIGHT = 50.0
+var DEFAULT_ORBIT_SPHERE_RADIUS = 40.0
+var DEFAULT_ORBIT_HEIGHT = 35.0
 
 ## FUNCTIONS =======================================================================================
 ## PREMADE ---------------------------------------------------------------------

@@ -14,7 +14,6 @@ var disclib = preload("res://Scripts/Puck/Disc/disclib.gd").new()
 @export_group("Movement")
 @export var GRAVITY_MULT: int
 @export var PUCK_MAX_SPEED = 70
-
 @export var PUCK_MAX_ANGULAR_SPEED = 1
 @export var BREAK_SPEED = 1.075
 
@@ -27,12 +26,14 @@ var BRAKING = false
 func _ready():
 	initialize_disc_params()
 	reset_disc()
+	cap_angular()
 
 ## BULK ------------------------------------------------------------------------
 
 ## Initializes this puck's specific values for all global puck parameters
 func initialize_disc_params():
-	$".".gravity_scale = GRAVITY_MULT
+	#$".".gravity_scale = GRAVITY_MULT
+	pass
 
 func apply_direct_force(force_vector):
 	var xz_change = dlib.vector_to_xy(force_vector)
